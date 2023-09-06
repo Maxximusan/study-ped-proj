@@ -1,7 +1,19 @@
+import { useState, useEffect } from 'react';
 import * as SC from './App.styled';
 import { Box } from 'components/Box';
+import { getCats } from './Api/catApi';
 
 export const App = () => {
+  const [cats, setCats] = useState([]);
+
+  useEffect(() => {
+    async function fetchCats() {
+      const data = await getCats();
+      setCats(data);
+    }
+    fetchCats();
+  }, []);
+  console.log(cats);
   return (
     <Box as="main">
       <Box>
@@ -14,6 +26,13 @@ export const App = () => {
         <SC.SecDiv></SC.SecDiv>
         <SC.ThirdDiv></SC.ThirdDiv>
       </Box>
+      <div>
+        {cats.map((cat, ind) => (
+          <div key={ind}>
+            <img src={cat.url} alt="" width="320" />
+          </div>
+        ))}
+      </div>
     </Box>
   );
 };
