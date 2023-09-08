@@ -11,6 +11,7 @@ export const App = () => {
   const [breeds, setBreeds] = useState([]);
   const [selectedBreed, setSelectedBreed] = useState(null);
   const [cats, setCats] = useState([]);
+  const [des, setDes] = useState(null);
 
   useEffect(() => {
     // async function fetchCats() {
@@ -26,12 +27,8 @@ export const App = () => {
     fetchCats();
   }, []);
   console.log(breeds);
-  // console.log(randomcats);
 
-  const options = breeds.map(breed => ({
-    value: breed.id,
-    label: breed.name,
-  }));
+  // console.log(randomcats);
 
   useEffect(() => {
     if (selectedBreed === null) return;
@@ -46,6 +43,17 @@ export const App = () => {
   console.log(selectedBreed);
   console.log(cats);
 
+  const options = breeds.map(breed => ({
+    value: breed.id,
+    label: breed.name,
+    description: breed.description,
+  }));
+
+  const handleChange = option => {
+    setSelectedBreed(option.value);
+    setDes(option.description);
+  };
+  console.log(des);
   return (
     <Box as="main">
       <Box>
@@ -68,9 +76,11 @@ export const App = () => {
       {breeds.length > 0 && (
         <Select
           options={options}
-          onChange={option => setSelectedBreed(option.value)}
+          onChange={handleChange}
+          // onChange={option => console.log(option)}
         />
       )}
+      <p>{des}</p>
       <ul>
         {cats.map(cat => (
           <li key={cat.id}>

@@ -23,8 +23,6 @@ export const getBreedsCats = async () => {
 // https://api.thecatapi.com/v1/images/search?breed_ids={breed.id}
 
 export const getCatsByBreed = async breed => {
-  const response = await axios.get(
-    `/images/search?breed_ids=${breed}&limit=15`
-  );
+  const response = await axios.get(`/images/search?breed_ids=${breed}&limit=10`);
   return response.data;
 };
