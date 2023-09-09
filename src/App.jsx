@@ -12,6 +12,9 @@ export const App = () => {
   const [selectedBreed, setSelectedBreed] = useState(null);
   const [cats, setCats] = useState([]);
   const [des, setDes] = useState(null);
+  const [wiki, setWiki] = useState(null);
+  const [orig, setOrig] = useState(null);
+  const [choseBreed, setChosebreed] = useState(false);
 
   useEffect(() => {
     // async function fetchCats() {
@@ -44,14 +47,38 @@ export const App = () => {
   console.log(cats);
 
   const options = breeds.map(breed => ({
+    // main
     value: breed.id,
     label: breed.name,
     description: breed.description,
+    origin: breed.origin,
+    temperament: breed.temperament,
+    // links
+    wikipedia: breed.wikipedia_url,
+    detailedDescription: breed.vetstreet_url,
+    // rating
+    affectionLevel: breed.affection_level,
+    adaptability: breed.adaptability,
+    childFriendly: breed.child_friendly,
+    dogFriendly: breed.dog_friendly,
+    energyLevel: breed.energy_level,
+    grooming: breed.grooming,
+    healthIssues: breed.health_issues,
+    hypoallergenic: breed.hypoallergenic,
+    intelligence: breed.intelligence,
+    sheddingLevel: breed.shedding_level,
+    socialNeeds: breed.social_needs,
+    strangerFriendly: breed.stranger_friendly,
+    vocalisation: breed.vocalisation,
+    countryCode: breed.country_codes,
   }));
 
   const handleChange = option => {
+    setChosebreed(true);
     setSelectedBreed(option.value);
     setDes(option.description);
+    setWiki(option.wikipedia);
+    setOrig(option.origin);
   };
   console.log(des);
   return (
@@ -81,6 +108,10 @@ export const App = () => {
         />
       )}
       <p>{des}</p>
+      <p>{orig}</p>
+      <img src={orig} alt="" width="320" />
+      {choseBreed ? <a href={wiki}>ffdfdfdfd</a> : null}
+
       <ul>
         {cats.map(cat => (
           <li key={cat.id}>

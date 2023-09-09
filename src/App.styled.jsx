@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+// ★
+
 export const MainTitle = styled.h1`
   font-family: ${p => p.theme.fonts.droid};
   margin-bottom: ${p => p.theme.space[4]}px;
