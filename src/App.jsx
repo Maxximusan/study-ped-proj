@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
+import ReactStars from 'react-rating-stars-component';
 
 import * as SC from './App.styled';
 import { Box } from 'components/Box';
 // import { getRandomCats } from './Api/catApi';
 import { getBreedsCats, getCatsByBreed } from './Api/catApi';
+// 
 
 export const App = () => {
   // const [randomcats, setRandomCats] = useState([]);
@@ -15,6 +17,7 @@ export const App = () => {
   const [wiki, setWiki] = useState(null);
   const [orig, setOrig] = useState(null);
   const [choseBreed, setChosebreed] = useState(false);
+  const [intelligence, setIntelligence] = useState(null);
 
   useEffect(() => {
     // async function fetchCats() {
@@ -45,6 +48,7 @@ export const App = () => {
 
   console.log(selectedBreed);
   console.log(cats);
+  console.log(intelligence);
 
   const options = breeds.map(breed => ({
     // main
@@ -79,6 +83,7 @@ export const App = () => {
     setDes(option.description);
     setWiki(option.wikipedia);
     setOrig(option.origin);
+    setIntelligence(option.energyLevel);
   };
   console.log(des);
   return (
@@ -104,13 +109,42 @@ export const App = () => {
         <Select
           options={options}
           onChange={handleChange}
+          onMenuOpen={() => setChosebreed(false)}
           // onChange={option => console.log(option)}
         />
       )}
       <p>{des}</p>
       <p>{orig}</p>
-      <img src={orig} alt="" width="320" />
-      {choseBreed ? <a href={wiki}>ffdfdfdfd</a> : null}
+      {choseBreed ? (
+        <div>
+          <a href={wiki}>wikipedia</a>
+        </div>
+      ) : null}
+
+      {choseBreed ? (
+        // <SC.Raiting>
+        //   <SC.RaitingBody>
+        //     <SC.RaitingActive></SC.RaitingActive>
+        //     <SC.RaitingStars>
+        //       <SC.StarInput type="radio" value="1" name="stars" />
+        //       <SC.StarInput type="radio" value="2" name="stars" />
+        //       <SC.StarInput type="radio" value="3" name="stars" />
+        //       <SC.StarInput type="radio" value="4" name="stars" />
+        //       <SC.StarInput type="radio" value="5" name="stars" />
+        //     </SC.RaitingStars>
+        //   </SC.RaitingBody>
+        //   <SC.RaitingValue>{intelligence}</SC.RaitingValue>
+        // </SC.Raiting>
+        <ReactStars
+          count={5}
+          // onChange={intelligence}
+          size={24}
+          value={intelligence}
+          edit={false}
+          activeColor="#ffd700"
+        />
+        
+      ) : null}
 
       <ul>
         {cats.map(cat => (

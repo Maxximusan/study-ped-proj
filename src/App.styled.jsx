@@ -45,4 +45,53 @@ export const ThirdDiv = styled.div`
 //   -moz-osx-font-smoothing: grayscale;
 
 //  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-//     'Montserrat' , monospace;
+//     'Montserrat' , monospace
+
+// export const Raiting = styled.div`
+//   display: flex;
+//   align-items: flex-end;
+//   font-size: ${p => p.theme.fontSizes.m};
+// `;
+// export const RaitingBody = styled.div`
+//   position: relative;
+//   &:before {
+//     content: '★★★★★';
+
+//     display: block;
+//   }
+// `;
+// export const RaitingActive = styled.div`
+//   position: absolute;
+//   width: 100%;
+//   /* меняя ширину - меняется заполненость звезд */
+//   height: 100%;
+//   top: 0;
+//   left: 0;
+//   overflow: hidden;
+
+//   &::before {
+//     content: '★★★★★';
+//     position: absolute;
+//     width: 100%;
+//     height: 100%;
+//     top: 0;
+//     left: 0;
+//     color: ${p => p.theme.colors.my};
+//   }
+// `;
+// export const RaitingStars = styled.div`
+//   position: absolute;
+//   width: 100%;
+//   height: 100%;
+//   top: 0;
+//   left: 0;
+//   display: flex;
+// `;
+// export const StarInput = styled.input`
+//   flex: 0 0 20%;
+//   height: 100%;
+//   opacity: 0;
+// `;
+// export const RaitingValue = styled.p`
+//   font-size: 75%;
+// `;
