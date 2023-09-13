@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import ReactStars from 'react-rating-stars-component';
+import ImageGallery from 'react-image-gallery';
+import { RotatingLines } from 'react-loader-spinner';
 
 import * as SC from './App.styled';
 import { Box } from 'components/Box';
 // import { getRandomCats } from './Api/catApi';
 import { getBreedsCats, getCatsByBreed } from './Api/catApi';
-// 
+//
 
 export const App = () => {
   // const [randomcats, setRandomCats] = useState([]);
@@ -18,6 +20,8 @@ export const App = () => {
   const [orig, setOrig] = useState(null);
   const [choseBreed, setChosebreed] = useState(false);
   const [intelligence, setIntelligence] = useState(null);
+  const [isGalleryLoaded, setIsGalleryLoaded] = useState(false);
+  const [firstGalLoad, setFirstGalLoad] = useState(false);
 
   useEffect(() => {
     // async function fetchCats() {
@@ -27,8 +31,12 @@ export const App = () => {
     // fetchCats();
 
     async function fetchCats() {
-      const data = await getBreedsCats();
-      setBreeds(data);
+      try {
+        const data = await getBreedsCats();
+        setBreeds(data);
+      } catch (error) {
+        console.log(error);
+      }
     }
     fetchCats();
   }, []);
@@ -40,8 +48,12 @@ export const App = () => {
     if (selectedBreed === null) return;
 
     async function fetchCats() {
-      const data = await getCatsByBreed(selectedBreed);
-      setCats(data);
+      try {
+        const data = await getCatsByBreed(selectedBreed);
+        setCats(data);
+      } catch (error) {
+        console.log(error);
+      }
     }
     fetchCats();
   }, [selectedBreed]);
@@ -50,6 +62,15 @@ export const App = () => {
   console.log(cats);
   console.log(intelligence);
 
+  const catsImages = cats.map(cat => ({
+    // id: cat.id,
+    original: cat.url,
+    thumbnail: cat.url,
+    // originalWidth: cat.width,
+    // originalHeight: cat.height,
+    // thumbnailWidth: cat.width,
+    // thumbnailHeight: cat.height,
+  }));
   const options = breeds.map(breed => ({
     // main
     value: breed.id,
@@ -79,13 +100,29 @@ export const App = () => {
 
   const handleChange = option => {
     setChosebreed(true);
+    // setIsGalleryLoaded(true);
     setSelectedBreed(option.value);
     setDes(option.description);
     setWiki(option.wikipedia);
     setOrig(option.origin);
     setIntelligence(option.energyLevel);
+
+    if (!firstGalLoad) {
+      loaderForFirstRenderGallery();
+    }
+    setFirstGalLoad(true);
   };
   console.log(des);
+  // ф-я таймера для лоадера - не помогла решить скачки recatimagegallery
+  function loaderForFirstRenderGallery() {
+    setIsGalleryLoaded(true);
+    let timerId = null;
+    timerId = setTimeout(() => {
+      setIsGalleryLoaded(false);
+      clearTimeout(timerId);
+    }, 1500);
+  }
+
   return (
     <Box as="main">
       <Box>
@@ -108,11 +145,30 @@ export const App = () => {
       {breeds.length > 0 && (
         <Select
           options={options}
+          // onChange={option => console.log(option)}
           onChange={handleChange}
           onMenuOpen={() => setChosebreed(false)}
-          // onChange={option => console.log(option)}
+          // onMenuClose={() => setChosebreed(true)}
+          required={true}
         />
       )}
+
+      {choseBreed ? (
+        <Box width="100%">
+          {!isGalleryLoaded ? (
+            <ImageGallery items={catsImages} showIndex={true} lazyLoad={true} />
+          ) : (
+            <RotatingLines
+              strokeColor="grey"
+              strokeWidth="5"
+              animationDuration="0.75"
+              width="96"
+              visible={true}
+            />
+          )}
+        </Box>
+      ) : null}
+
       <p>{des}</p>
       <p>{orig}</p>
       {choseBreed ? (
@@ -122,37 +178,22 @@ export const App = () => {
       ) : null}
 
       {choseBreed ? (
-        // <SC.Raiting>
-        //   <SC.RaitingBody>
-        //     <SC.RaitingActive></SC.RaitingActive>
-        //     <SC.RaitingStars>
-        //       <SC.StarInput type="radio" value="1" name="stars" />
-        //       <SC.StarInput type="radio" value="2" name="stars" />
-        //       <SC.StarInput type="radio" value="3" name="stars" />
-        //       <SC.StarInput type="radio" value="4" name="stars" />
-        //       <SC.StarInput type="radio" value="5" name="stars" />
-        //     </SC.RaitingStars>
-        //   </SC.RaitingBody>
-        //   <SC.RaitingValue>{intelligence}</SC.RaitingValue>
-        // </SC.Raiting>
         <ReactStars
           count={5}
-          // onChange={intelligence}
           size={24}
           value={intelligence}
           edit={false}
           activeColor="#ffd700"
         />
-        
       ) : null}
 
-      <ul>
+      {/* <ul>
         {cats.map(cat => (
           <li key={cat.id}>
             <img src={cat.url} alt="" width="320" />
           </li>
         ))}
-      </ul>
+      </ul> */}
     </Box>
   );
 };

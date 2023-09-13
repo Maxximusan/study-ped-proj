@@ -53,4 +53,8 @@ export const theme = {
     normal: '4px',
     round: '50%',
   },
+  sizes: {
+    normal: '100%',
+    half: '50%',
+  },
 };
