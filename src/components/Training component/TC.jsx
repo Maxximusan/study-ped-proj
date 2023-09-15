@@ -3,7 +3,7 @@ import { Box } from 'components/Box';
 
 export const TC = () => {
     return (
-      <>
+      <Box as="section">
         <Box>
           <SC.MainTitle> Hello my pet project</SC.MainTitle>
           <SC.SecondTitle> this font is different</SC.SecondTitle>
@@ -14,6 +14,6 @@ export const TC = () => {
           <SC.SecDiv></SC.SecDiv>
           <SC.ThirdDiv></SC.ThirdDiv>
         </Box>
-      </>
+      </Box>
     );
 };

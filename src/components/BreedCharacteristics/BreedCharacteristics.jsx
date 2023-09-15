@@ -1,19 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
-import ReactStars from 'react-rating-stars-component';
+// import ReactStars from 'react-rating-stars-component';
 
 import { getBreedsCats, getCatsByBreed } from '../../Api/catApi';
+import { Box } from 'components/Box';
 import { BreedPhoto } from 'components/BreedPhoto/BreedPhoto';
+import { BreedStarRanking } from 'components/BreedStarRanking/BreedStarRanking';
 
 export const BreedCharacteristics = () => {
   const [breeds, setBreeds] = useState([]);
   const [selectedBreed, setSelectedBreed] = useState(null);
   const [cats, setCats] = useState([]);
-  const [des, setDes] = useState(null);
-  const [wiki, setWiki] = useState(null);
-  const [orig, setOrig] = useState(null);
   const [choseBreed, setChosebreed] = useState(false);
+  //  breed links
+  const [wiki, setWiki] = useState(null);
+  const [detailedDescription, setDetailedDescription] = useState(null);
+
+  // breed main deccription
+  const [label, setLabel] = useState(null);
+  const [description, setDescription] = useState(null);
+  const [temperament, setTemperament] = useState(null);
+  const [origin, setOrigin] = useState(null);
+  const [countryCode, setCountryCode] = useState(null);
+  // string
+  const [lifeSpan, setLifeSpan] = useState('');
+
+  // breed rankings
+
+  const [affectionLevel, setAffectionLevel] = useState(null);
+  const [adaptability, setAdaptability] = useState(null);
+  const [childFriendly, setChildFriendly] = useState(null);
+  const [dogFriendly, setDogFriendly] = useState(null);
+  const [energyLevel, setEnergyLevel] = useState(null);
+  const [grooming, setGrooming] = useState(null);
+  const [healthIssues, setHealthIssues] = useState(null);
+  const [hypoallergenic, setHypoallergenic] = useState(null);
   const [intelligence, setIntelligence] = useState(null);
+  const [sheddingLevel, setSheddingLevel] = useState(null);
+  const [socialNeeds, setSocialNeeds] = useState(null);
+  const [strangerFriendly, setStrangerFriendly] = useState(null);
 
   useEffect(() => {
     async function fetchCats() {
@@ -78,15 +103,32 @@ export const BreedCharacteristics = () => {
     setChosebreed(true);
 
     setSelectedBreed(option.value);
-    setDes(option.description);
+
     setWiki(option.wikipedia);
-    setOrig(option.origin);
-    setIntelligence(option.energyLevel);
+    setDetailedDescription(option.detailedDescription);
+    setLabel(option.label);
+    setDescription(option.description);
+    setTemperament(option.temperament);
+    setOrigin(option.origin);
+    setCountryCode(option.countryCode);
+    setAffectionLevel(option.affectionLevel);
+    setAdaptability(option.adaptability);
+    setChildFriendly(option.childFriendly);
+    setDogFriendly(option.dogFriendly);
+    setEnergyLevel(option.energyLevel);
+    setGrooming(option.grooming);
+    setHealthIssues(option.healthIssues);
+    setHypoallergenic(option.hypoallergenic);
+    setIntelligence(option.intelligence);
+    setSheddingLevel(option.sheddingLevel);
+    setSocialNeeds(option.socialNeeds);
+    setStrangerFriendly(option.strangerFriendly);
+    setLifeSpan(option.lifeSpan);
   };
-  console.log(des);
+  console.log(description);
 
   return (
-    <>
+    <Box as="section">
       {breeds.length > 0 && (
         <Select
           options={options}
@@ -98,24 +140,76 @@ export const BreedCharacteristics = () => {
       )}
 
       <BreedPhoto cats={cats} choseBreed={choseBreed} />
+      <h3>{label}</h3>
+      <p>{description}</p>
 
-      <p>{des}</p>
-      <p>{orig}</p>
+      <p>{origin}</p>
+      <p>{countryCode}</p>
+
+      <p>{temperament}</p>
+
       {choseBreed ? (
         <div>
-          <a href={wiki}>wikipedia</a>
+          <p>Life span: {lifeSpan}</p>
+          <div>
+            <a href={wiki}>wikipedia</a>
+          </div>
+          <div>
+            <a href={detailedDescription}>vetstreet.com</a>
+          </div>
+
+          <ul>
+            <BreedStarRanking
+              individuality="Affection Level"
+              rankIndividuality={affectionLevel}
+            />
+            <BreedStarRanking
+              individuality="Adaptability"
+              rankIndividuality={adaptability}
+            />
+            <BreedStarRanking
+              individuality="Child Friendly"
+              rankIndividuality={childFriendly}
+            />
+            <BreedStarRanking
+              individuality="Dog Friendly"
+              rankIndividuality={dogFriendly}
+            />
+            <BreedStarRanking
+              individuality="Energy Level"
+              rankIndividuality={energyLevel}
+            />
+            <BreedStarRanking
+              individuality="Grooming"
+              rankIndividuality={grooming}
+            />
+            <BreedStarRanking
+              individuality="Health Issues"
+              rankIndividuality={healthIssues}
+            />
+            <BreedStarRanking
+              individuality="Hypoallergenic"
+              rankIndividuality={hypoallergenic}
+            />
+            <BreedStarRanking
+              individuality="Intelligence"
+              rankIndividuality={intelligence}
+            />
+            <BreedStarRanking
+              individuality="Shedding Level"
+              rankIndividuality={sheddingLevel}
+            />
+            <BreedStarRanking
+              individuality="Social Needs"
+              rankIndividuality={socialNeeds}
+            />
+            <BreedStarRanking
+              individuality="Stranger Friendly"
+              rankIndividuality={strangerFriendly}
+            />
+          </ul>
         </div>
       ) : null}
-
-      {choseBreed ? (
-        <ReactStars
-          count={5}
-          size={24}
-          value={intelligence}
-          edit={false}
-          activeColor="#ffd700"
-        />
-      ) : null}
-    </>
+    </Box>
   );
 };
