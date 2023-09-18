@@ -5,7 +5,7 @@ export const BreedStarRanking = props => {
   const { rankIndividuality, individuality } = props;
   return (
     <Box as="li">
-      <p> {individuality}</p>
+      <h4> {individuality}</h4>
       <ReactStars
         count={5}
         size={24}

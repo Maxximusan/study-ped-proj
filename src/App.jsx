@@ -1,16 +1,20 @@
 import React from 'react';
 // import { RotatingLines } from 'react-loader-spinner';
 
-import { Box } from 'components/Box';
-
-import { TC } from 'components/Training component/TC';
-import { BreedCharacteristics } from 'components/BreedCharacteristics/BreedCharacteristics';
+import { Routes, Route } from 'react-router-dom';
+import { SharedLayout } from 'components/SharedLayout/SharedLayout';
+import { Home, FindCat, NotFound } from 'pages';
 
 export const App = () => {
   return (
-    <Box as="main">
-      <TC />
-      <BreedCharacteristics />
-    </Box>
+    <>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="/findcat" element={<FindCat />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </>
   );
 };

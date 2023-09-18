@@ -22,11 +22,9 @@ export const BreedCharacteristics = () => {
   const [temperament, setTemperament] = useState(null);
   const [origin, setOrigin] = useState(null);
   const [countryCode, setCountryCode] = useState(null);
-  // string
   const [lifeSpan, setLifeSpan] = useState('');
 
   // breed rankings
-
   const [affectionLevel, setAffectionLevel] = useState(null);
   const [adaptability, setAdaptability] = useState(null);
   const [childFriendly, setChildFriendly] = useState(null);
@@ -69,7 +67,6 @@ export const BreedCharacteristics = () => {
 
   console.log(selectedBreed);
   console.log(cats);
-  console.log(intelligence);
 
   const options = breeds.map(breed => ({
     // main
@@ -79,6 +76,7 @@ export const BreedCharacteristics = () => {
     origin: breed.origin,
     temperament: breed.temperament,
     countryCode: breed.country_codes,
+    lifeSpan: breed.life_span,
     // links
     wikipedia: breed.wikipedia_url,
     detailedDescription: breed.vetstreet_url,
@@ -95,8 +93,6 @@ export const BreedCharacteristics = () => {
     sheddingLevel: breed.shedding_level,
     socialNeeds: breed.social_needs,
     strangerFriendly: breed.stranger_friendly,
-    // string rating
-    lifeSpan: breed.life_span,
   }));
 
   const handleChange = option => {
@@ -126,6 +122,7 @@ export const BreedCharacteristics = () => {
     setLifeSpan(option.lifeSpan);
   };
   console.log(description);
+  console.log(intelligence);
 
   return (
     <Box as="section">
@@ -140,6 +137,7 @@ export const BreedCharacteristics = () => {
       )}
 
       <BreedPhoto cats={cats} choseBreed={choseBreed} />
+
       <h3>{label}</h3>
       <p>{description}</p>
 
