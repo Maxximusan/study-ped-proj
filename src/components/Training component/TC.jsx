@@ -1,6 +1,7 @@
 import * as SC from './TC.styled';
 import { Box } from 'components/Box';
-
+import { TimeDisplay } from 'components/TimeDisplay/TimeDisplay';
+import { Time } from 'components/Time/Time';
 export const TC = () => {
   return (
     <Box as="section">
@@ -16,6 +17,8 @@ export const TC = () => {
         <SC.SecDiv></SC.SecDiv>
         <SC.ThirdDiv></SC.ThirdDiv>
       </Box>
+      <TimeDisplay />
+      <Time />
     </Box>
   );
 };
