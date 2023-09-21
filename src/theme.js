@@ -1,6 +1,7 @@
 export const theme = {
   colors: {
     black: '#000',
+    semiblack: '#2a363b',
     white: '#fff',
     text: '#2a2a2a',
     background: '#fff',
@@ -30,6 +31,7 @@ export const theme = {
     m: '24px',
     l: '32px',
     xl: '64px',
+    xxxl: '960px',
   },
 
   fontWeights: {
@@ -45,7 +47,7 @@ export const theme = {
 
   borders: {
     none: 'none',
-    normal: '1px solid',
+    normal: '1px solid #2a363b',
   },
 
   radii: {
