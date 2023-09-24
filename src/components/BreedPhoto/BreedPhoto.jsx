@@ -1,7 +1,6 @@
 import ImageGallery from 'react-image-gallery';
-import { Box } from 'components/Box';
 
-export const BreedPhoto = ({ cats, choseBreed }) => {
+export const BreedPhoto = ({ cats }) => {
   const catsImages = cats.map(cat => ({
     // id: cat.id,
     original: cat.url,
@@ -10,11 +9,5 @@ export const BreedPhoto = ({ cats, choseBreed }) => {
     // originalHeight: cat.height,
   }));
 
-  return (
-    <Box width="100%">
-      {choseBreed ? (
-        <ImageGallery items={catsImages} showIndex={true} lazyLoad={true} />
-      ) : null}
-    </Box>
-  );
+  return <ImageGallery items={catsImages} showIndex={true} lazyLoad={true} />;
 };

@@ -4,7 +4,7 @@ export const Navigation = () => {
   return (
     <nav>
       <SC.Link to="/">HOME</SC.Link>
-      <SC.Link to="/findcat">FINDCAT</SC.Link>
+      <SC.Link to="/findcat">FIND CAT</SC.Link>
     </nav>
   );
 };

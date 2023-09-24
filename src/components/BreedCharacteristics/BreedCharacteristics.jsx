@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 // import ReactStars from 'react-rating-stars-component';
+// import { RotatingLines } from 'react-loader-spinner';
 
 import { getBreedsCats, getCatsByBreed } from '../../Api/catApi';
 import { Box } from 'components/Box';
 import { BreedPhoto } from 'components/BreedPhoto/BreedPhoto';
 import { BreedStarRanking } from 'components/BreedStarRanking/BreedStarRanking';
+import { Loader } from 'components/Loader/Loader';
 
 export const BreedCharacteristics = () => {
   const [breeds, setBreeds] = useState([]);
   const [selectedBreed, setSelectedBreed] = useState(null);
   const [cats, setCats] = useState([]);
   const [choseBreed, setChosebreed] = useState(false);
+  const [isLoadingBreedPhoto, setIsLoadingBreedPhoto] = useState(false);
+  const [onlyOneTime, setOnlyOneTime] = useState(false);
   //  breed links
   const [wiki, setWiki] = useState(null);
   const [detailedDescription, setDetailedDescription] = useState(null);
@@ -120,9 +124,24 @@ export const BreedCharacteristics = () => {
     setSocialNeeds(option.socialNeeds);
     setStrangerFriendly(option.strangerFriendly);
     setLifeSpan(option.lifeSpan);
+
+    if (!onlyOneTime) {
+      loaderForFirstRenderGallery();
+      setOnlyOneTime(true);
+    }
   };
   console.log(description);
   console.log(intelligence);
+
+  // ф-я таймера для лоадера
+  function loaderForFirstRenderGallery() {
+    setIsLoadingBreedPhoto(true);
+    let timerId = null;
+    timerId = setTimeout(() => {
+      setIsLoadingBreedPhoto(false);
+      clearTimeout(timerId);
+    }, 1000);
+  }
 
   return (
     <Box as="section">
@@ -136,77 +155,82 @@ export const BreedCharacteristics = () => {
         />
       )}
 
-      <BreedPhoto cats={cats} choseBreed={choseBreed} />
-
-      <h3>{label}</h3>
-      <p>{description}</p>
-
-      <p>{origin}</p>
-      <p>{countryCode}</p>
-
-      <p>{temperament}</p>
+      {isLoadingBreedPhoto ? <Loader /> : null}
 
       {choseBreed ? (
-        <div>
-          <p>Life span: {lifeSpan}</p>
-          <div>
-            <a href={wiki}>wikipedia</a>
-          </div>
-          <div>
-            <a href={detailedDescription}>vetstreet.com</a>
-          </div>
+        <Box>
+          <BreedPhoto cats={cats} choseBreed={choseBreed} />
 
-          <ul>
-            <BreedStarRanking
-              individuality="Affection Level"
-              rankIndividuality={affectionLevel}
-            />
-            <BreedStarRanking
-              individuality="Adaptability"
-              rankIndividuality={adaptability}
-            />
-            <BreedStarRanking
-              individuality="Child Friendly"
-              rankIndividuality={childFriendly}
-            />
-            <BreedStarRanking
-              individuality="Dog Friendly"
-              rankIndividuality={dogFriendly}
-            />
-            <BreedStarRanking
-              individuality="Energy Level"
-              rankIndividuality={energyLevel}
-            />
-            <BreedStarRanking
-              individuality="Grooming"
-              rankIndividuality={grooming}
-            />
-            <BreedStarRanking
-              individuality="Health Issues"
-              rankIndividuality={healthIssues}
-            />
-            <BreedStarRanking
-              individuality="Hypoallergenic"
-              rankIndividuality={hypoallergenic}
-            />
-            <BreedStarRanking
-              individuality="Intelligence"
-              rankIndividuality={intelligence}
-            />
-            <BreedStarRanking
-              individuality="Shedding Level"
-              rankIndividuality={sheddingLevel}
-            />
-            <BreedStarRanking
-              individuality="Social Needs"
-              rankIndividuality={socialNeeds}
-            />
-            <BreedStarRanking
-              individuality="Stranger Friendly"
-              rankIndividuality={strangerFriendly}
-            />
-          </ul>
-        </div>
+          <div>
+            <h3>{label}</h3>
+            <p> Origin: {origin}</p>
+            <p>{temperament}</p>
+            <p>{description}</p>
+
+            <img src={origin} alt={countryCode} />
+
+            <p>Life span: {lifeSpan}</p>
+            <div>
+              <p>you can read more about this cat in - </p>
+              <a href={wiki}>wikipedia</a>
+            </div>
+            <div>
+              <p> you can take more information in -</p>
+              <a href={detailedDescription}>vetstreet</a>
+            </div>
+
+            <ul>
+              <BreedStarRanking
+                individuality="Affection Level"
+                rankIndividuality={affectionLevel}
+              />
+              <BreedStarRanking
+                individuality="Adaptability"
+                rankIndividuality={adaptability}
+              />
+              <BreedStarRanking
+                individuality="Child Friendly"
+                rankIndividuality={childFriendly}
+              />
+              <BreedStarRanking
+                individuality="Dog Friendly"
+                rankIndividuality={dogFriendly}
+              />
+              <BreedStarRanking
+                individuality="Energy Level"
+                rankIndividuality={energyLevel}
+              />
+              <BreedStarRanking
+                individuality="Grooming"
+                rankIndividuality={grooming}
+              />
+              <BreedStarRanking
+                individuality="Health Issues"
+                rankIndividuality={healthIssues}
+              />
+              <BreedStarRanking
+                individuality="Hypoallergenic"
+                rankIndividuality={hypoallergenic}
+              />
+              <BreedStarRanking
+                individuality="Intelligence"
+                rankIndividuality={intelligence}
+              />
+              <BreedStarRanking
+                individuality="Shedding Level"
+                rankIndividuality={sheddingLevel}
+              />
+              <BreedStarRanking
+                individuality="Social Needs"
+                rankIndividuality={socialNeeds}
+              />
+              <BreedStarRanking
+                individuality="Stranger Friendly"
+                rankIndividuality={strangerFriendly}
+              />
+            </ul>
+          </div>
+        </Box>
       ) : null}
     </Box>
   );
