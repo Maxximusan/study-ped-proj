@@ -129,6 +129,7 @@ export const BreedCharacteristics = () => {
       loaderForFirstRenderGallery();
       setOnlyOneTime(true);
     }
+    // loaderForFirstRenderGallery();
   };
   console.log(description);
   console.log(intelligence);
@@ -159,8 +160,9 @@ export const BreedCharacteristics = () => {
 
       {choseBreed ? (
         <Box>
-          <BreedPhoto cats={cats} choseBreed={choseBreed} />
-
+          {cats.length > 0 ? (
+            <BreedPhoto cats={cats}  />
+          ) : null}
           <div>
             <h3>{label}</h3>
             <p> Origin: {origin}</p>

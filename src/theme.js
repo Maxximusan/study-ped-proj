@@ -58,5 +58,6 @@ export const theme = {
   sizes: {
     normal: '100%',
     half: '50%',
+    mawi: '1200px',
   },
 };

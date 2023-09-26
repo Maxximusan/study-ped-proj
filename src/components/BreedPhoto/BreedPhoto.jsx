@@ -1,4 +1,5 @@
 import ImageGallery from 'react-image-gallery';
+import PropTypes from 'prop-types';
 
 export const BreedPhoto = ({ cats }) => {
   const catsImages = cats.map(cat => ({
@@ -10,4 +11,12 @@ export const BreedPhoto = ({ cats }) => {
   }));
 
   return <ImageGallery items={catsImages} showIndex={true} lazyLoad={true} />;
+};
+
+BreedPhoto.propTypes = {
+  cats: PropTypes.arrayOf(
+    PropTypes.shape({
+      url: PropTypes.string.isRequired,
+    }).isRequired
+  ),
 };

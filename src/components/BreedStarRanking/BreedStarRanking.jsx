@@ -1,4 +1,5 @@
 import ReactStars from 'react-rating-stars-component';
+import PropTypes from 'prop-types';
 import { Box } from 'components/Box';
 
 export const BreedStarRanking = props => {
@@ -15,4 +16,9 @@ export const BreedStarRanking = props => {
       />
     </Box>
   );
+};
+
+BreedStarRanking.propTypes = {
+  rankIndividuality: PropTypes.number.isRequired,
+  individuality: PropTypes.string.isRequired,
 };
