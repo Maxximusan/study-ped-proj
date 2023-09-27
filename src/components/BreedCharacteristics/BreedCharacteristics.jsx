@@ -8,6 +8,7 @@ import { Box } from 'components/Box';
 import { BreedPhoto } from 'components/BreedPhoto/BreedPhoto';
 import { BreedStarRanking } from 'components/BreedStarRanking/BreedStarRanking';
 import { Loader } from 'components/Loader/Loader';
+import * as SC from 'components/BreedCharacteristics/BreedCharacteristics.styled';
 
 export const BreedCharacteristics = () => {
   const [breeds, setBreeds] = useState([]);
@@ -25,7 +26,7 @@ export const BreedCharacteristics = () => {
   const [description, setDescription] = useState(null);
   const [temperament, setTemperament] = useState(null);
   const [origin, setOrigin] = useState(null);
-  const [countryCode, setCountryCode] = useState(null);
+  // const [countryCode, setCountryCode] = useState(null);
   const [lifeSpan, setLifeSpan] = useState('');
 
   // breed rankings
@@ -110,7 +111,7 @@ export const BreedCharacteristics = () => {
     setDescription(option.description);
     setTemperament(option.temperament);
     setOrigin(option.origin);
-    setCountryCode(option.countryCode);
+    // setCountryCode(option.countryCode);
     setAffectionLevel(option.affectionLevel);
     setAdaptability(option.adaptability);
     setChildFriendly(option.childFriendly);
@@ -161,27 +162,21 @@ export const BreedCharacteristics = () => {
       {choseBreed ? (
         <Box>
           {cats.length > 0 ? (
-            <BreedPhoto cats={cats}  />
+            <BreedPhoto cats={cats} des={description} breed={label} />
           ) : null}
           <div>
-            <h3>{label}</h3>
-            <p> Origin: {origin}</p>
-            <p>{temperament}</p>
-            <p>{description}</p>
+            <SC.H3>{label}</SC.H3>
+            <SC.H4> Origin: {origin}</SC.H4>
 
-            <img src={origin} alt={countryCode} />
+            <SC.P>{description}</SC.P>
 
-            <p>Life span: {lifeSpan}</p>
-            <div>
-              <p>you can read more about this cat in - </p>
-              <a href={wiki}>wikipedia</a>
-            </div>
-            <div>
-              <p> you can take more information in -</p>
-              <a href={detailedDescription}>vetstreet</a>
-            </div>
+            {/* <img src={origin} alt={countryCode} /> */}
 
-            <ul>
+            <SC.P>Life span: {lifeSpan}</SC.P>
+
+            <SC.P>{temperament}</SC.P>
+
+            <SC.UL>
               <BreedStarRanking
                 individuality="Affection Level"
                 rankIndividuality={affectionLevel}
@@ -230,7 +225,21 @@ export const BreedCharacteristics = () => {
                 individuality="Stranger Friendly"
                 rankIndividuality={strangerFriendly}
               />
-            </ul>
+            </SC.UL>
+            <SC.AdditionalInfoBox>
+              <SC.LinkDescription>
+                if you need more information about your chosen cat, please visit
+                next sorces
+              </SC.LinkDescription>
+              <SC.BothLinkBox>
+                <SC.LinkBox>
+                  <SC.Link href={wiki}>wikipedia</SC.Link>
+                </SC.LinkBox>
+                <SC.LinkBox>
+                  <SC.Link href={detailedDescription}>vetstreet</SC.Link>
+                </SC.LinkBox>
+              </SC.BothLinkBox>
+            </SC.AdditionalInfoBox>
           </div>
         </Box>
       ) : null}

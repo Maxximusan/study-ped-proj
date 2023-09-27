@@ -6,10 +6,10 @@ export const BreedStarRanking = props => {
   const { rankIndividuality, individuality } = props;
   return (
     <Box as="li">
-      <h4> {individuality}</h4>
+      <h5> {individuality}</h5>
       <ReactStars
         count={5}
-        size={24}
+        size={16}
         value={rankIndividuality}
         edit={false}
         activeColor="#ffd700"

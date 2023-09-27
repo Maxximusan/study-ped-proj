@@ -11,6 +11,7 @@ export const theme = {
     muted: '#f6f6f6',
     my: 'orangered',
     my2: '#1eca1e',
+    darkgreen: '#025c0d',
   },
 
   // для маржинов и падингов (в файле стилей px добавить)
@@ -53,6 +54,7 @@ export const theme = {
   radii: {
     none: '0',
     normal: '4px',
+    semiRound: '25%',
     round: '50%',
   },
   sizes: {
