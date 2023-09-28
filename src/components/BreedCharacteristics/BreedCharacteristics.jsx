@@ -147,6 +147,10 @@ export const BreedCharacteristics = () => {
 
   return (
     <Box as="section">
+      <h2>
+        Choose breed, click on picture if you want like it and add to your
+        favorite
+      </h2>
       {breeds.length > 0 && (
         <Select
           options={options}
@@ -162,7 +166,7 @@ export const BreedCharacteristics = () => {
       {choseBreed ? (
         <Box>
           {cats.length > 0 ? (
-            <BreedPhoto cats={cats} des={description} breed={label} />
+            <BreedPhoto cats={cats}  />
           ) : null}
           <div>
             <SC.H3>{label}</SC.H3>

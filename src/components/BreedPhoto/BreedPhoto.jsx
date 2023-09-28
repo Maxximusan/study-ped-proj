@@ -1,9 +1,11 @@
 import ImageGallery from 'react-image-gallery';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { Modal } from 'components/Modal/Modal';
 
-export const BreedPhoto = ({ cats, des, breed }) => {
+export const BreedPhoto = ({ cats }) => {
   const [needUrl, setNeedUrl] = useState(null);
+  const [isModalShow, setIsModalShow] = useState(false);
 
   const catsImages = cats.map(cat => ({
     // id: cat.id,
@@ -15,18 +17,28 @@ export const BreedPhoto = ({ cats, des, breed }) => {
     // originalHeight: cat.height,
   }));
 
+  const toggleModal = () => {
+    setIsModalShow(prevState => !prevState);
+  };
   const onClick = option => {
     setNeedUrl(option.target.src);
     console.log(needUrl);
+    toggleModal();
   };
   return (
-    <ImageGallery
-      items={catsImages}
-      showIndex={true}
-      lazyLoad={true}
-      thumbnailPosition="top"
-      onClick={onClick}
-    />
+    <>
+      <ImageGallery
+        items={catsImages}
+        showIndex={true}
+        lazyLoad={true}
+        thumbnailPosition="left"
+        onClick={onClick}
+      />
+
+      {isModalShow && (
+        <Modal needUrlForModal={needUrl} onClickModal={toggleModal} />
+      )}
+    </>
   );
 };
 
