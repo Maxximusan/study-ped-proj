@@ -32,3 +32,20 @@ export const Modal = styled.div`
 //   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
 //     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 // `;
+
+export const LikeBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+`;
+export const LikeDes = styled.p`
+  color: ${p => p.theme.colors.my2};
+`;
+export const LikeBtn = styled.button`
+  background-color: rgb(0 0 0 / 0%);
+  /* background-color: rgb(72 72 72); */
+  /* background-color: rgba(255, 224, 183, 0.8); */
+  border-radius: ${p => p.theme.radii.round};
+  border: ${p => p.theme.borders.none};
+`;
