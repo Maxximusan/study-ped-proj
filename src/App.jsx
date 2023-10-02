@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Routes, Route } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
-import { Home, FindCat, NotFound } from 'pages';
+import { Home, FindCat, NotFound, Favorite } from 'pages';
 
 export const App = () => {
   return (
@@ -12,6 +12,7 @@ export const App = () => {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
           <Route path="/findcat" element={<FindCat />} />
+          <Route path="/favorite" element={<Favorite />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

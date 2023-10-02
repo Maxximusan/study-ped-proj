@@ -5,6 +5,7 @@ export const Navigation = () => {
     <nav>
       <SC.Link to="/">HOME</SC.Link>
       <SC.Link to="/findcat">FIND CAT</SC.Link>
+      <SC.Link to="/favorite">FAVORITE</SC.Link>
     </nav>
   );
 };
