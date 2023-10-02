@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
-import { useOutletContext } from 'react-router-dom';
 
 import * as SC from 'components/Modal/Modal.styled';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
@@ -10,13 +9,8 @@ import { useLocalStorage } from '../../hooks/useLocalStorage';
 const modalRoot = document.querySelector('#modal-root');
 
 export const Modal = ({ needUrlForModal, onClickModal }) => {
-  const {
-    LIKED: [stateForFavorite, setStateForFavorite],
-  } = useOutletContext();
-  const [isLiked, setIsLiked] = useLocalStorage('btn' + needUrlForModal, false);
-
-  console.log(isLiked);
-  console.log(stateForFavorite);
+  const [isLiked, setIsLiked] = useLocalStorage(needUrlForModal, false);
+  
 
   const handleBackdropClick = event => {
     if (event.currentTarget === event.target) {
@@ -41,7 +35,7 @@ export const Modal = ({ needUrlForModal, onClickModal }) => {
   const handleLike = event => {
     setIsLiked(prev => !prev);
     event.preventDefault();
-    setStateForFavorite(prev => !prev);
+   
   };
 
   return createPortal(
