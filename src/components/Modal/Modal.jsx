@@ -8,9 +8,11 @@ import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export const Modal = ({ needUrlForModal, onClickModal }) => {
-  const [isLiked, setIsLiked] = useLocalStorage(needUrlForModal, false);
-  
+export const Modal = ({ needUrlForModal, onClickModal, label }) => {
+  const [isLiked, setIsLiked] = useLocalStorage(
+    label + ' ' + needUrlForModal,
+    false
+  );
 
   const handleBackdropClick = event => {
     if (event.currentTarget === event.target) {
@@ -35,7 +37,6 @@ export const Modal = ({ needUrlForModal, onClickModal }) => {
   const handleLike = event => {
     setIsLiked(prev => !prev);
     event.preventDefault();
-   
   };
 
   return createPortal(

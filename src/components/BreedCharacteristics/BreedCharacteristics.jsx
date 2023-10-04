@@ -8,6 +8,7 @@ import { Box } from 'components/Box';
 import { BreedPhoto } from 'components/BreedPhoto/BreedPhoto';
 import { BreedStarRanking } from 'components/BreedStarRanking/BreedStarRanking';
 import { Loader } from 'components/Loader/Loader';
+import { setTimeOutForLoader } from 'helpers/setTimeout';
 import * as SC from 'components/BreedCharacteristics/BreedCharacteristics.styled';
 
 export const BreedCharacteristics = () => {
@@ -127,23 +128,13 @@ export const BreedCharacteristics = () => {
     setLifeSpan(option.lifeSpan);
 
     if (!onlyOneTime) {
-      loaderForFirstRenderGallery();
+      setTimeOutForLoader(setIsLoadingBreedPhoto);
       setOnlyOneTime(true);
     }
     // loaderForFirstRenderGallery();
   };
   console.log(description);
   console.log(intelligence);
-
-  // ф-я таймера для лоадера
-  function loaderForFirstRenderGallery() {
-    setIsLoadingBreedPhoto(true);
-    let timerId = null;
-    timerId = setTimeout(() => {
-      setIsLoadingBreedPhoto(false);
-      clearTimeout(timerId);
-    }, 1000);
-  }
 
   return (
     <Box as="section">
@@ -165,8 +156,8 @@ export const BreedCharacteristics = () => {
 
       {choseBreed ? (
         <Box>
-          {cats.length > 0 ? (
-            <BreedPhoto cats={cats}  />
+          {cats.length > 0 && !isLoadingBreedPhoto ? (
+            <BreedPhoto cats={cats} label={label} />
           ) : null}
           <div>
             <SC.H3>{label}</SC.H3>

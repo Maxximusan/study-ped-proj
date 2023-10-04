@@ -1,46 +1,55 @@
-// import { useOutletContext } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { FavoriteList } from 'components/FavoriteList/FavoriteList';
+import { Loader } from 'components/Loader/Loader';
+import { setTimeOutForLoader } from 'helpers/setTimeout';
 
 const Favorite = () => {
-  console.log(localStorage);
+  const [isLoading, setIsLoading] = useState(false);
+  // let dataFromLS = Object.entries(localStorage);
+  // console.log(dataFromLS);
 
-  //   let keys = Object.keys(localStorage);
-  //   console.log(keys);
-  //   let values = Object.values(localStorage);
-  //   console.log(values);
-  //   let filteredValues = values.filter(value => value.includes(true));
-  //   console.log(filteredValues);
-  let dataFromLS = Object.entries(localStorage);
-  console.log(dataFromLS);
+  // let testMap = dataFromLS.map(el => el.join(' ').split(' ').reverse());
+  // console.log(testMap);
+  // ф-я таймера для лоадера
+
+  useEffect(() => {
+    setTimeOutForLoader(setIsLoading);
+  }, []);
 
   return (
     <>
-      <div>
+      {isLoading && <Loader />}
+      {!isLoading && <FavoriteList />}
+      {/* <div>
         <h2> YOUR FAVORITE CATS</h2>
-
         <ul>
-          {dataFromLS.map(
+          {testMap.map(
             fav =>
-              fav[1] === 'true' && (
-                <li key={fav[0]}>
-                  <img
-                    src={fav[0]}
-                    alt="chosen cat"
-                    width="600px"
-                    height="300px"
-                  />
+              fav[0] === 'true' && (
+                <li key={fav[1]}>
+                  <div>
+                    <img
+                      src={fav[1]}
+                      alt="chosen cat"
+                      width="800px"
+                      // height="300px"
+                    />
+
+                    {fav[3] ? (
+                      fav[4] ? (
+                        <p>{fav[2] + ' ' + fav[3] + ' ' + fav[4]}</p>
+                      ) : (
+                        <p>{fav[2] + ' ' + fav[3]}</p>
+                      )
+                    ) : (
+                      <p>{fav[2]}</p>
+                    )}
+                  </div>
                 </li>
               )
           )}
         </ul>
-
-        {/* <ul>
-          {keys.map(fav => (
-            <li key={fav}>
-              <img src={fav} alt="chosen cat" width="600px" height="300px" />
-            </li>
-          ))}
-        </ul> */}
-      </div>
+      </div> */}
     </>
   );
 };
