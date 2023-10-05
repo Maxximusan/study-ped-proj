@@ -71,4 +71,5 @@ export const Modal = ({ needUrlForModal, onClickModal, label }) => {
 Modal.propTypes = {
   needUrlForModal: PropTypes.string.isRequired,
   onClickModal: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
 };

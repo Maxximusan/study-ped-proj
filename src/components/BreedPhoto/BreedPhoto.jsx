@@ -16,17 +16,16 @@ export const BreedPhoto = ({ cats, label }) => {
     // originalWidth: cat.width,
     // originalHeight: cat.height,
   }));
-  console.log(catsImages);
+  // console.log(catsImages);
 
   const toggleModal = () => {
     setIsModalShow(prevState => !prevState);
   };
   const onClick = option => {
     setNeedUrl(option.target.src);
-    console.log(needUrl);
+    // console.log(needUrl);
     // console.log(option);
 
-    // setCatId(option.target);
     toggleModal();
   };
 

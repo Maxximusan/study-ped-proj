@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
+
 // import ReactStars from 'react-rating-stars-component';
 // import { RotatingLines } from 'react-loader-spinner';
 
@@ -55,7 +56,7 @@ export const BreedCharacteristics = () => {
     }
     fetchCats();
   }, []);
-  console.log(breeds);
+  // console.log(breeds);
 
   useEffect(() => {
     if (selectedBreed === null) return;
@@ -71,8 +72,8 @@ export const BreedCharacteristics = () => {
     fetchCats();
   }, [selectedBreed]);
 
-  console.log(selectedBreed);
-  console.log(cats);
+  // console.log(selectedBreed);
+  // console.log(cats);
 
   const options = breeds.map(breed => ({
     // main
@@ -133,11 +134,11 @@ export const BreedCharacteristics = () => {
     }
     // loaderForFirstRenderGallery();
   };
-  console.log(description);
-  console.log(intelligence);
+  // console.log(description);
+  // console.log(intelligence);
 
   return (
-    <Box as="section">
+    <Box as="section" height="100vw" bg="#b5a794">
       <h2>
         Choose breed, click on picture if you want like it and add to your
         favorite
@@ -149,6 +150,16 @@ export const BreedCharacteristics = () => {
           onMenuOpen={() => setChosebreed(false)}
           // onMenuClose={() => setChosebreed(true)}
           placeholder="Choose breed"
+          // theme={theme => ({
+          //   ...theme,
+          //   borderRadius: 10,
+          //   colors: {
+          //     ...theme.colors,
+          //     primary: 'orangered',
+          //     primary25: 'yellow',
+          //     primary50: 'green',
+          //   },
+          // })}
         />
       )}
 

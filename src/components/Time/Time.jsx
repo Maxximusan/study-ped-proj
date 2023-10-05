@@ -19,7 +19,7 @@ export const Time = () => {
   setInterval(updateTime, 1000);
   return (
     <>
-      <Box textAlign="center" color="orange">
+      <Box textAlign="center" color="blue">
         <h3>{currentTime}</h3>
       </Box>
       {/* <h4>{calendarDate}</h4>

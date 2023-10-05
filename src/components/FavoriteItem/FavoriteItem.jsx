@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { Item } from 'components/FavoriteItem/FavoriteItem.styled';
 
 export const FavoriteItem = ({
@@ -32,4 +34,11 @@ export const FavoriteItem = ({
       </Item>
     </>
   );
+};
+
+FavoriteItem.propTypes = {
+  img: PropTypes.string.isRequired,
+  firstBreedNamePart: PropTypes.string.isRequired,
+  secondBNPart: PropTypes.string,
+  thirdBNPart: PropTypes.string,
 };

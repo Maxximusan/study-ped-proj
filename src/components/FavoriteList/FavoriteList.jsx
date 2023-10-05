@@ -3,14 +3,14 @@ import { List, Title } from 'components/FavoriteList/FavoriteList.styled';
 
 export const FavoriteList = () => {
   let dataFromLS = Object.entries(localStorage);
-  console.log(dataFromLS);
+  //   console.log(dataFromLS);
 
   let favoriteCats = dataFromLS.map(el => el.join(' ').split(' ').reverse());
-  console.log(favoriteCats);
+  //   console.log(favoriteCats);
 
   return (
     <section>
-      <Title> YOUR FAVORITE CATS</Title>
+      <Title> Your Favorite Cats</Title>
 
       <List>
         {favoriteCats.map(

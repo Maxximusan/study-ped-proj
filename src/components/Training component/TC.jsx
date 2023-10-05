@@ -15,11 +15,7 @@ export const TC = () => {
 
         <Time />
       </Box>
-      {/* <Box bg="muted" p={3} display="flex">
-        <SC.FirstDiv></SC.FirstDiv>
-        <SC.SecDiv></SC.SecDiv>
-        <SC.ThirdDiv></SC.ThirdDiv>
-      </Box> */}
+
       {/* <TimeDisplay /> */}
       <SC.ImageContainer></SC.ImageContainer>
     </Box>
