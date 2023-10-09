@@ -2,6 +2,7 @@ import React from 'react';
 // import { RotatingLines } from 'react-loader-spinner';
 
 import { Routes, Route } from 'react-router-dom';
+
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 import { Home, FindCat, NotFound, Favorite } from 'pages';
 
