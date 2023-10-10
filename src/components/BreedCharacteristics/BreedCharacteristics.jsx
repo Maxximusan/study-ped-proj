@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
+import { useSelector, useDispatch } from 'react-redux';
 
 // import ReactStars from 'react-rating-stars-component';
 // import { RotatingLines } from 'react-loader-spinner';
@@ -7,43 +8,74 @@ import Select from 'react-select';
 import { getBreedsCats, getCatsByBreed } from '../../Api/catApi';
 import { Box } from 'components/Box';
 import { BreedPhoto } from 'components/BreedPhoto/BreedPhoto';
-import { BreedStarRanking } from 'components/BreedStarRanking/BreedStarRanking';
+import { BreedStarRankingList } from 'components/BreedStarRankingList/BreedStarRankingList';
+import { BreedMainInfo } from 'components/BreedMainInfo/BreedMainInfo';
+import { BreedAdditionalInfo } from 'components/BreedAdditionalInfo/BreedAdditionalInfo';
 import { Loader } from 'components/Loader/Loader';
 import { setTimeOutForLoader } from 'helpers/setTimeout';
-import * as SC from 'components/BreedCharacteristics/BreedCharacteristics.styled';
+// import * as SC from 'components/BreedCharacteristics/BreedCharacteristics.styled';
+import {
+  getId,
+  getLabel,
+  takeAdaptability,
+  takeAffectionLevel,
+  takeChildFriendly,
+  takeCountryCode,
+  takeDescription,
+  takeDetailedDescription,
+  takeDogFriendly,
+  takeEnergyLevel,
+  takeGrooming,
+  takeHealthIssues,
+  takeHypoallergenic,
+  takeId,
+  takeIntelligence,
+  takeLabel,
+  takeLifeSpan,
+  takeOrigin,
+  takeSheddingLevel,
+  takeSocialNeeds,
+  takeStrangerFriendly,
+  takeTemperament,
+  takeWikipedia,
+} from '../../redux/breedOptionsSlice';
 
 export const BreedCharacteristics = () => {
   const [breeds, setBreeds] = useState([]);
-  const [selectedBreed, setSelectedBreed] = useState(null);
+  // const [selectedBreed, setSelectedBreed] = useState(null);
   const [cats, setCats] = useState([]);
   const [choseBreed, setChosebreed] = useState(false);
   const [isLoadingBreedPhoto, setIsLoadingBreedPhoto] = useState(false);
   const [onlyOneTime, setOnlyOneTime] = useState(false);
-  //  breed links
-  const [wiki, setWiki] = useState(null);
-  const [detailedDescription, setDetailedDescription] = useState(null);
 
-  // breed main deccription
-  const [label, setLabel] = useState(null);
-  const [description, setDescription] = useState(null);
-  const [temperament, setTemperament] = useState(null);
-  const [origin, setOrigin] = useState(null);
-  // const [countryCode, setCountryCode] = useState(null);
-  const [lifeSpan, setLifeSpan] = useState('');
+  // //  breed links
+  // const [wiki, setWiki] = useState(null);
+  // const [detailedDescription, setDetailedDescription] = useState(null);
 
-  // breed rankings
-  const [affectionLevel, setAffectionLevel] = useState(null);
-  const [adaptability, setAdaptability] = useState(null);
-  const [childFriendly, setChildFriendly] = useState(null);
-  const [dogFriendly, setDogFriendly] = useState(null);
-  const [energyLevel, setEnergyLevel] = useState(null);
-  const [grooming, setGrooming] = useState(null);
-  const [healthIssues, setHealthIssues] = useState(null);
-  const [hypoallergenic, setHypoallergenic] = useState(null);
-  const [intelligence, setIntelligence] = useState(null);
-  const [sheddingLevel, setSheddingLevel] = useState(null);
-  const [socialNeeds, setSocialNeeds] = useState(null);
-  const [strangerFriendly, setStrangerFriendly] = useState(null);
+  // // breed main deccription
+  // const [label, setLabel] = useState(null);
+  // const [description, setDescription] = useState(null);
+  // const [temperament, setTemperament] = useState(null);
+  // const [origin, setOrigin] = useState(null);
+  // // const [countryCode, setCountryCode] = useState(null);
+  // const [lifeSpan, setLifeSpan] = useState('');
+
+  // // breed rankings
+  // const [affectionLevel, setAffectionLevel] = useState(null);
+  // const [adaptability, setAdaptability] = useState(null);
+  // const [childFriendly, setChildFriendly] = useState(null);
+  // const [dogFriendly, setDogFriendly] = useState(null);
+  // const [energyLevel, setEnergyLevel] = useState(null);
+  // const [grooming, setGrooming] = useState(null);
+  // const [healthIssues, setHealthIssues] = useState(null);
+  // const [hypoallergenic, setHypoallergenic] = useState(null);
+  // const [intelligence, setIntelligence] = useState(null);
+  // const [sheddingLevel, setSheddingLevel] = useState(null);
+  // const [socialNeeds, setSocialNeeds] = useState(null);
+  // const [strangerFriendly, setStrangerFriendly] = useState(null);
+  const dispatch = useDispatch();
+  const selectedBreed = useSelector(getId);
+  const label = useSelector(getLabel);
 
   useEffect(() => {
     async function fetchCats() {
@@ -105,28 +137,28 @@ export const BreedCharacteristics = () => {
   const handleChange = option => {
     setChosebreed(true);
 
-    setSelectedBreed(option.value);
+    dispatch(takeId(option.value));
 
-    setWiki(option.wikipedia);
-    setDetailedDescription(option.detailedDescription);
-    setLabel(option.label);
-    setDescription(option.description);
-    setTemperament(option.temperament);
-    setOrigin(option.origin);
+    dispatch(takeWikipedia(option.wikipedia));
+    dispatch(takeDetailedDescription(option.detailedDescription));
+    dispatch(takeLabel(option.label));
+    dispatch(takeDescription(option.description));
+    dispatch(takeTemperament(option.temperament));
+    dispatch(takeOrigin(option.origin));
     // setCountryCode(option.countryCode);
-    setAffectionLevel(option.affectionLevel);
-    setAdaptability(option.adaptability);
-    setChildFriendly(option.childFriendly);
-    setDogFriendly(option.dogFriendly);
-    setEnergyLevel(option.energyLevel);
-    setGrooming(option.grooming);
-    setHealthIssues(option.healthIssues);
-    setHypoallergenic(option.hypoallergenic);
-    setIntelligence(option.intelligence);
-    setSheddingLevel(option.sheddingLevel);
-    setSocialNeeds(option.socialNeeds);
-    setStrangerFriendly(option.strangerFriendly);
-    setLifeSpan(option.lifeSpan);
+    dispatch(takeAffectionLevel(option.affectionLevel));
+    dispatch(takeAdaptability(option.adaptability));
+    dispatch(takeChildFriendly(option.childFriendly));
+    dispatch(takeDogFriendly(option.dogFriendly));
+    dispatch(takeEnergyLevel(option.energyLevel));
+    dispatch(takeGrooming(option.grooming));
+    dispatch(takeHealthIssues(option.healthIssues));
+    dispatch(takeHypoallergenic(option.hypoallergenic));
+    dispatch(takeIntelligence(option.intelligence));
+    dispatch(takeSheddingLevel(option.sheddingLevel));
+    dispatch(takeSocialNeeds(option.socialNeeds));
+    dispatch(takeStrangerFriendly(option.strangerFriendly));
+    dispatch(takeLifeSpan(option.lifeSpan));
 
     if (!onlyOneTime) {
       setTimeOutForLoader(setIsLoadingBreedPhoto);
@@ -171,81 +203,11 @@ export const BreedCharacteristics = () => {
             <BreedPhoto cats={cats} label={label} />
           ) : null}
           <div>
-            <SC.H3>{label}</SC.H3>
-            <SC.H4> Origin: {origin}</SC.H4>
+            <BreedMainInfo />
 
-            <SC.P>{description}</SC.P>
+            <BreedStarRankingList />
 
-            {/* <img src={origin} alt={countryCode} /> */}
-
-            <SC.P>Life span: {lifeSpan}</SC.P>
-
-            <SC.P>{temperament}</SC.P>
-
-            <SC.UL>
-              <BreedStarRanking
-                individuality="Affection Level"
-                rankIndividuality={affectionLevel}
-              />
-              <BreedStarRanking
-                individuality="Adaptability"
-                rankIndividuality={adaptability}
-              />
-              <BreedStarRanking
-                individuality="Child Friendly"
-                rankIndividuality={childFriendly}
-              />
-              <BreedStarRanking
-                individuality="Dog Friendly"
-                rankIndividuality={dogFriendly}
-              />
-              <BreedStarRanking
-                individuality="Energy Level"
-                rankIndividuality={energyLevel}
-              />
-              <BreedStarRanking
-                individuality="Grooming"
-                rankIndividuality={grooming}
-              />
-              <BreedStarRanking
-                individuality="Health Issues"
-                rankIndividuality={healthIssues}
-              />
-              <BreedStarRanking
-                individuality="Hypoallergenic"
-                rankIndividuality={hypoallergenic}
-              />
-              <BreedStarRanking
-                individuality="Intelligence"
-                rankIndividuality={intelligence}
-              />
-              <BreedStarRanking
-                individuality="Shedding Level"
-                rankIndividuality={sheddingLevel}
-              />
-              <BreedStarRanking
-                individuality="Social Needs"
-                rankIndividuality={socialNeeds}
-              />
-              <BreedStarRanking
-                individuality="Stranger Friendly"
-                rankIndividuality={strangerFriendly}
-              />
-            </SC.UL>
-            <SC.AdditionalInfoBox>
-              <SC.LinkDescription>
-                if you need more information about your chosen cat, please visit
-                next sorces
-              </SC.LinkDescription>
-              <SC.BothLinkBox>
-                <SC.LinkBox>
-                  <SC.Link href={wiki}>wikipedia</SC.Link>
-                </SC.LinkBox>
-                <SC.LinkBox>
-                  <SC.Link href={detailedDescription}>vetstreet</SC.Link>
-                </SC.LinkBox>
-              </SC.BothLinkBox>
-            </SC.AdditionalInfoBox>
+            <BreedAdditionalInfo />
           </div>
         </Box>
       ) : null}
