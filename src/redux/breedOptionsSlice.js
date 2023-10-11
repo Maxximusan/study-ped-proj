@@ -24,9 +24,6 @@ const initialState = {
   strangerFriendly: '',
 };
 
-// const generalStateChange = (state, action) => {
-//   state = action.payload;
-// };
 export const breedOptionsSlice = createSlice({
   name: 'breedOptions',
   initialState,

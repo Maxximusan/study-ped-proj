@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { Modal } from 'components/Modal/Modal';
 
-export const BreedPhoto = ({ cats, label }) => {
+export const BreedPhoto = ({ cats }) => {
   const [needUrl, setNeedUrl] = useState(null);
   const [isModalShow, setIsModalShow] = useState(false);
 
@@ -43,7 +43,7 @@ export const BreedPhoto = ({ cats, label }) => {
         <Modal
           needUrlForModal={needUrl}
           onClickModal={toggleModal}
-          label={label}
+          
         />
       )}
     </>

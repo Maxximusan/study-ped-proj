@@ -8,6 +8,15 @@ export const FavoriteList = () => {
   let favoriteCats = dataFromLS.map(el => el.join(' ').split(' ').reverse());
   //   console.log(favoriteCats);
 
+  // This is for test redux-persist
+  // const all = useSelector(getAll);
+  // console.log(all);
+
+  // let dataFromLS = Object.values(all);
+  // console.log(dataFromLS);
+
+  // let favoriteCats = dataFromLS.map(el => el.split(' ').reverse());
+
   return (
     <section>
       <Title> Your Favorite Cats</Title>

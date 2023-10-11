@@ -2,13 +2,16 @@ import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { useSelector } from 'react-redux';
 
 import * as SC from 'components/Modal/Modal.styled';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { getLabel } from 'redux/breedOptionsSlice';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export const Modal = ({ needUrlForModal, onClickModal, label }) => {
+export const Modal = ({ needUrlForModal, onClickModal }) => {
+  const label = useSelector(getLabel);
   const [isLiked, setIsLiked] = useLocalStorage(
     label + ' ' + needUrlForModal,
     false
@@ -71,5 +74,5 @@ export const Modal = ({ needUrlForModal, onClickModal, label }) => {
 Modal.propTypes = {
   needUrlForModal: PropTypes.string.isRequired,
   onClickModal: PropTypes.func.isRequired,
-  label: PropTypes.string.isRequired,
+  // label: PropTypes.string.isRequired,
 };

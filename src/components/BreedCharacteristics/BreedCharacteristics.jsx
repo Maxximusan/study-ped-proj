@@ -16,11 +16,9 @@ import { setTimeOutForLoader } from 'helpers/setTimeout';
 // import * as SC from 'components/BreedCharacteristics/BreedCharacteristics.styled';
 import {
   getId,
-  getLabel,
   takeAdaptability,
   takeAffectionLevel,
   takeChildFriendly,
-  takeCountryCode,
   takeDescription,
   takeDetailedDescription,
   takeDogFriendly,
@@ -42,40 +40,15 @@ import {
 
 export const BreedCharacteristics = () => {
   const [breeds, setBreeds] = useState([]);
-  // const [selectedBreed, setSelectedBreed] = useState(null);
+
   const [cats, setCats] = useState([]);
   const [choseBreed, setChosebreed] = useState(false);
   const [isLoadingBreedPhoto, setIsLoadingBreedPhoto] = useState(false);
   const [onlyOneTime, setOnlyOneTime] = useState(false);
 
-  // //  breed links
-  // const [wiki, setWiki] = useState(null);
-  // const [detailedDescription, setDetailedDescription] = useState(null);
-
-  // // breed main deccription
-  // const [label, setLabel] = useState(null);
-  // const [description, setDescription] = useState(null);
-  // const [temperament, setTemperament] = useState(null);
-  // const [origin, setOrigin] = useState(null);
-  // // const [countryCode, setCountryCode] = useState(null);
-  // const [lifeSpan, setLifeSpan] = useState('');
-
-  // // breed rankings
-  // const [affectionLevel, setAffectionLevel] = useState(null);
-  // const [adaptability, setAdaptability] = useState(null);
-  // const [childFriendly, setChildFriendly] = useState(null);
-  // const [dogFriendly, setDogFriendly] = useState(null);
-  // const [energyLevel, setEnergyLevel] = useState(null);
-  // const [grooming, setGrooming] = useState(null);
-  // const [healthIssues, setHealthIssues] = useState(null);
-  // const [hypoallergenic, setHypoallergenic] = useState(null);
-  // const [intelligence, setIntelligence] = useState(null);
-  // const [sheddingLevel, setSheddingLevel] = useState(null);
-  // const [socialNeeds, setSocialNeeds] = useState(null);
-  // const [strangerFriendly, setStrangerFriendly] = useState(null);
   const dispatch = useDispatch();
   const selectedBreed = useSelector(getId);
-  const label = useSelector(getLabel);
+  
 
   useEffect(() => {
     async function fetchCats() {
@@ -200,7 +173,7 @@ export const BreedCharacteristics = () => {
       {choseBreed ? (
         <Box>
           {cats.length > 0 && !isLoadingBreedPhoto ? (
-            <BreedPhoto cats={cats} label={label} />
+            <BreedPhoto cats={cats}  />
           ) : null}
           <div>
             <BreedMainInfo />

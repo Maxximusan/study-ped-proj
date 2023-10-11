@@ -3,6 +3,15 @@ import { Box } from 'components/Box';
 // import { TimeDisplay } from 'components/TimeDisplay/TimeDisplay';
 import { Time } from 'components/Time/Time';
 export const TC = () => {
+  // let a = 'aa';
+  // let b = 'bb';
+  // let c = 'cc';
+
+  // let RR = [];
+  // RR.push(a, b, c);
+  // console.log(RR);
+  // const TT = RR.filter(el => el !== a);
+  // console.log(TT);
   return (
     <Box as="section">
       <Box>
