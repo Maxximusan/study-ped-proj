@@ -1,10 +1,10 @@
-import { createAction } from '@reduxjs/toolkit';
+// import { createAction } from '@reduxjs/toolkit';
 
-//pending
-export const fetchCatsRequest = createAction('breeds/fetchCatsRequest');
+// //pending
+// export const fetchCatsRequest = createAction('breedsCats/fetchCatsRequest');
 
-//fullfilled
-export const fetchCatsSuccess = createAction('breeds/fetchCatsSuccess');
+// //fullfilled
+// export const fetchCatsSuccess = createAction('breedsCats/fetchCatsSuccess');
 
-//rejected
-export const fetchCatsError = createAction('breeds/fetchCatsError');
+// //rejected
+// export const fetchCatsError = createAction('breedsCats/fetchCatsError');

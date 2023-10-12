@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // import ReactStars from 'react-rating-stars-component';
 // import { RotatingLines } from 'react-loader-spinner';
 
-import { getCatsByBreed } from '../../Api/catApi';
+// import { getCatsByBreed } from '../../Api/catApi';
 import * as catsOperations from 'redux/cats/catsOperations';
 import { Box } from 'components/Box';
 import { BreedPhoto } from 'components/BreedPhoto/BreedPhoto';
@@ -16,7 +16,7 @@ import { Loader } from 'components/Loader/Loader';
 import { setTimeOutForLoader } from 'helpers/setTimeout';
 // import * as SC from 'components/BreedCharacteristics/BreedCharacteristics.styled';
 import {
-  getId,
+  // getId,
   takeAdaptability,
   takeAffectionLevel,
   takeChildFriendly,
@@ -41,44 +41,34 @@ import {
 import { getBreeds } from 'redux/cats/catsSelectors';
 
 export const BreedCharacteristics = () => {
-  // const [breeds, setBreeds] = useState([]);
   const breeds = useSelector(getBreeds);
 
-  const [cats, setCats] = useState([]);
+  // const [cats, setCats] = useState([]);
   const [choseBreed, setChosebreed] = useState(false);
   const [isLoadingBreedPhoto, setIsLoadingBreedPhoto] = useState(false);
   const [onlyOneTime, setOnlyOneTime] = useState(false);
 
   const dispatch = useDispatch();
-  const selectedBreed = useSelector(getId);
+  // const selectedBreed = useSelector(getId);
 
   useEffect(() => {
-    // async function fetchCats() {
-    //   try {
-    //     const data = await getBreedsCats();
-    //     setBreeds(data);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // }
-    // fetchCats();
     dispatch(catsOperations.fetchCats());
   }, [dispatch]);
   // console.log(breeds);
 
-  useEffect(() => {
-    if (selectedBreed === null) return;
+  // useEffect(() => {
+  //   if (selectedBreed === null) return;
 
-    async function fetchCats() {
-      try {
-        const data = await getCatsByBreed(selectedBreed);
-        setCats(data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchCats();
-  }, [selectedBreed]);
+  //   async function fetchCats() {
+  //     try {
+  //       const data = await getCatsByBreed(selectedBreed);
+  //       setCats(data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+  //   fetchCats();
+  // }, [selectedBreed]);
 
   // console.log(selectedBreed);
   // console.log(cats);
@@ -175,9 +165,7 @@ export const BreedCharacteristics = () => {
 
       {choseBreed ? (
         <Box>
-          {cats.length > 0 && !isLoadingBreedPhoto ? (
-            <BreedPhoto cats={cats} />
-          ) : null}
+          {!isLoadingBreedPhoto ? <BreedPhoto /> : null}
           <div>
             <BreedMainInfo />
 

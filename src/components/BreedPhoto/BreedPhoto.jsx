@@ -1,12 +1,37 @@
 import ImageGallery from 'react-image-gallery';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Modal } from 'components/Modal/Modal';
+// import { getCatsByBreed } from '../../Api/catApi';
 
-export const BreedPhoto = ({ cats }) => {
+import { getId } from '../../redux/breedOptionsSlice';
+import * as catsOperations from 'redux/cats/catsOperations';
+import { getCatsByBreed } from 'redux/cats/catsSelectors';
+
+export const BreedPhoto = () => {
+  const dispatch = useDispatch();
+  const cats = useSelector(getCatsByBreed);
+  // const [cats, setCats] = useState([]);
   const [needUrl, setNeedUrl] = useState(null);
   const [isModalShow, setIsModalShow] = useState(false);
+  const selectedBreed = useSelector(getId);
+  
+
+  useEffect(() => {
+    if (selectedBreed === null) return;
+    // async function fetchCats() {
+    //   try {
+    //     const data = await getCatsByBreed(selectedBreed);
+    //     setCats(data);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // }
+    // fetchCats();
+    dispatch(catsOperations.fetchCatsByBreed(selectedBreed));
+  }, [selectedBreed, dispatch]);
 
   const catsImages = cats.map(cat => ({
     id: cat.id,
@@ -31,20 +56,20 @@ export const BreedPhoto = ({ cats }) => {
 
   return (
     <>
-      <ImageGallery
-        items={catsImages}
-        showIndex={true}
-        lazyLoad={true}
-        thumbnailPosition="left"
-        onClick={onClick}
-      />
+      {cats.length > 0 && (
+        <div>
+          <ImageGallery
+            items={catsImages}
+            showIndex={true}
+            lazyLoad={true}
+            thumbnailPosition="left"
+            onClick={onClick}
+          />
 
-      {isModalShow && (
-        <Modal
-          needUrlForModal={needUrl}
-          onClickModal={toggleModal}
-          
-        />
+          {isModalShow && (
+            <Modal needUrlForModal={needUrl} onClickModal={toggleModal} />
+          )}
+        </div>
       )}
     </>
   );

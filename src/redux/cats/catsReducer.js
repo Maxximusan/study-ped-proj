@@ -1,22 +1,23 @@
 import { combineReducers, createReducer } from '@reduxjs/toolkit';
-import * as catsActions from './catsActions';
+// import * as catsActions from './catsActions';
+import { fetchCats } from './catsOperations';
 
-const enteties = createReducer([], {
-  [catsActions.fetchCatsSuccess]: (_, action) => action.payload,
+const breeds = createReducer([], {
+  [fetchCats.fulfilled]: (_, action) => action.payload,
 });
 
 const isLoading = createReducer(false, {
-  [catsActions.fetchCatsRequest]: () => true,
-  [catsActions.fetchCatsSuccess]: () => false,
-  [catsActions.fetchCatsError]: () => false,
+  [fetchCats.pending]: () => true,
+  [fetchCats.fulfilled]: () => false,
+  [fetchCats.rejected]: () => false,
 });
 
 const error = createReducer(null, {
-  [catsActions.fetchCatsError]: (_, action) => action.payload,
-  [catsActions.fetchCatsRequest]: () => null,
+  [fetchCats.rejected]: (_, action) => action.payload,
+  [fetchCats.pending]: () => null,
 });
 export default combineReducers({
-  enteties,
+  breeds,
   isLoading,
   error,
 });
