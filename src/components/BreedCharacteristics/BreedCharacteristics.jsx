@@ -5,7 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 // import ReactStars from 'react-rating-stars-component';
 // import { RotatingLines } from 'react-loader-spinner';
 
-import { getBreedsCats, getCatsByBreed } from '../../Api/catApi';
+import { getCatsByBreed } from '../../Api/catApi';
+import * as catsOperations from 'redux/cats/catsOperations';
 import { Box } from 'components/Box';
 import { BreedPhoto } from 'components/BreedPhoto/BreedPhoto';
 import { BreedStarRankingList } from 'components/BreedStarRankingList/BreedStarRankingList';
@@ -37,9 +38,11 @@ import {
   takeTemperament,
   takeWikipedia,
 } from '../../redux/breedOptionsSlice';
+import { getBreeds } from 'redux/cats/catsSelectors';
 
 export const BreedCharacteristics = () => {
-  const [breeds, setBreeds] = useState([]);
+  // const [breeds, setBreeds] = useState([]);
+  const breeds = useSelector(getBreeds);
 
   const [cats, setCats] = useState([]);
   const [choseBreed, setChosebreed] = useState(false);
@@ -48,19 +51,19 @@ export const BreedCharacteristics = () => {
 
   const dispatch = useDispatch();
   const selectedBreed = useSelector(getId);
-  
 
   useEffect(() => {
-    async function fetchCats() {
-      try {
-        const data = await getBreedsCats();
-        setBreeds(data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchCats();
-  }, []);
+    // async function fetchCats() {
+    //   try {
+    //     const data = await getBreedsCats();
+    //     setBreeds(data);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // }
+    // fetchCats();
+    dispatch(catsOperations.fetchCats());
+  }, [dispatch]);
   // console.log(breeds);
 
   useEffect(() => {
@@ -173,7 +176,7 @@ export const BreedCharacteristics = () => {
       {choseBreed ? (
         <Box>
           {cats.length > 0 && !isLoadingBreedPhoto ? (
-            <BreedPhoto cats={cats}  />
+            <BreedPhoto cats={cats} />
           ) : null}
           <div>
             <BreedMainInfo />
