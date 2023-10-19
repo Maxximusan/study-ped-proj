@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Modal } from 'components/Modal/Modal';
-// import { getCatsByBreed } from '../../Api/catApi';
 
 import { getId } from '../../redux/breedOptionsSlice';
 import * as catsOperations from 'redux/cats/catsOperations';
@@ -13,25 +12,19 @@ import { getCatsByBreed } from 'redux/cats/catsSelectors';
 export const BreedPhoto = () => {
   const dispatch = useDispatch();
   const cats = useSelector(getCatsByBreed);
-  // const [cats, setCats] = useState([]);
+
   const [needUrl, setNeedUrl] = useState(null);
   const [isModalShow, setIsModalShow] = useState(false);
   const selectedBreed = useSelector(getId);
-  
 
   useEffect(() => {
     if (selectedBreed === null) return;
-    // async function fetchCats() {
-    //   try {
-    //     const data = await getCatsByBreed(selectedBreed);
-    //     setCats(data);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // }
-    // fetchCats();
+
     dispatch(catsOperations.fetchCatsByBreed(selectedBreed));
   }, [selectedBreed, dispatch]);
+
+  // console.log(selectedBreed);
+  // console.log(cats);
 
   const catsImages = cats.map(cat => ({
     id: cat.id,

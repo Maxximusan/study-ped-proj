@@ -12,15 +12,18 @@ import {
 
 import { persistedLikeCatReducer } from './likedCatSlice';
 import { breedOptionsSlice } from './breedOptionsSlice';
-import catsReducer from './cats/catsReducer';
-import catsByBreedReducer from './cats/catsByBreedReducer';
+// import catsReducer from './cats/catsReducer';
+// import catsByBreedReducer from './cats/catsByBreedReducer';
+import { allBreedsSlice, catByBreedSlice } from './cats/catsSlice';
 
 export const store = configureStore({
   reducer: {
     breedOptions: breedOptionsSlice.reducer,
     like: persistedLikeCatReducer,
-    breedsCats: catsReducer,
-    catsByBreed: catsByBreedReducer,
+    // breedsCats: catsReducer,
+    // catsByBreed: catsByBreedReducer,
+    breedsCats: allBreedsSlice.reducer,
+    catsByBreed: catByBreedSlice.reducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({

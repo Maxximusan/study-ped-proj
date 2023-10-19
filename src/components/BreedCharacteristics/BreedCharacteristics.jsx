@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { useSelector, useDispatch } from 'react-redux';
 
-// import ReactStars from 'react-rating-stars-component';
-// import { RotatingLines } from 'react-loader-spinner';
-
 // import { getCatsByBreed } from '../../Api/catApi';
 import * as catsOperations from 'redux/cats/catsOperations';
 import { Box } from 'components/Box';
@@ -16,7 +13,6 @@ import { Loader } from 'components/Loader/Loader';
 import { setTimeOutForLoader } from 'helpers/setTimeout';
 // import * as SC from 'components/BreedCharacteristics/BreedCharacteristics.styled';
 import {
-  // getId,
   takeAdaptability,
   takeAffectionLevel,
   takeChildFriendly,
@@ -43,35 +39,16 @@ import { getBreeds } from 'redux/cats/catsSelectors';
 export const BreedCharacteristics = () => {
   const breeds = useSelector(getBreeds);
 
-  // const [cats, setCats] = useState([]);
   const [choseBreed, setChosebreed] = useState(false);
   const [isLoadingBreedPhoto, setIsLoadingBreedPhoto] = useState(false);
   const [onlyOneTime, setOnlyOneTime] = useState(false);
 
   const dispatch = useDispatch();
-  // const selectedBreed = useSelector(getId);
 
   useEffect(() => {
     dispatch(catsOperations.fetchCats());
   }, [dispatch]);
   // console.log(breeds);
-
-  // useEffect(() => {
-  //   if (selectedBreed === null) return;
-
-  //   async function fetchCats() {
-  //     try {
-  //       const data = await getCatsByBreed(selectedBreed);
-  //       setCats(data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  //   fetchCats();
-  // }, [selectedBreed]);
-
-  // console.log(selectedBreed);
-  // console.log(cats);
 
   const options = breeds.map(breed => ({
     // main
@@ -132,8 +109,6 @@ export const BreedCharacteristics = () => {
     }
     // loaderForFirstRenderGallery();
   };
-  // console.log(description);
-  // console.log(intelligence);
 
   return (
     <Box as="section" height="100vw" bg="#b5a794">
