@@ -13,6 +13,7 @@ const RegisterPage = () => {
     console.log(form.email.value);
     console.log(form.password.value);
     console.log(form.name.value);
+    
     dispatch(register({
       name: form.elements.name.value,
       email: form.elements.email.value,
