@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-
+import storage from 'redux-persist/lib/storage';
 import {
   persistStore,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -15,6 +16,13 @@ import { breedOptionsSlice } from './breedOptionsSlice';
 // import catsReducer from './cats/catsReducer';
 // import catsByBreedReducer from './cats/catsByBreedReducer';
 import { allBreedsSlice, catByBreedSlice } from './cats/catsSlice';
+import Auth from 'redux/auth/authSlice'
+
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
 
 export const store = configureStore({
   reducer: {
@@ -24,6 +32,7 @@ export const store = configureStore({
     // catsByBreed: catsByBreedReducer,
     breedsCats: allBreedsSlice.reducer,
     catsByBreed: catByBreedSlice.reducer,
+    auth: persistReducer (authPersistConfig, Auth)
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
