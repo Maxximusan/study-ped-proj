@@ -13,6 +13,7 @@ import { getIsLoggedIn } from 'redux/auth/authSelectors'
 
 export const SharedLayout = () => {
   const isLoggedIn = useSelector(getIsLoggedIn )
+  
   return (
     <Box maxWidth="1200px" mr="auto" ml="auto" pl={4} pr={4}>
       <Header>
