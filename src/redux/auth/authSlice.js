@@ -33,10 +33,10 @@ const initialState = {
         state.isLoggedIn = true
         state.isRefreshing = false;
       },
-      [refreshCurrentUser.pending](state) {
+      [refreshCurrentUser.pending](state){
               state.isRefreshing = true;
             },
-            [refreshCurrentUser.rejected](state) {
+            [refreshCurrentUser.rejected](state){
               state.isRefreshing = false;
             },
     }

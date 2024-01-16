@@ -8,6 +8,8 @@ import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 // import { Home, FindCat, NotFound, Favorite, LoginPage, RegisterPage} from 'pages';
 import { refreshCurrentUser } from 'redux/auth/authOperations';
 import { useAuth } from 'hooks/useAuth'
+import { RestrictedRoute } from 'components/RestrictedRoute';
+import {PrivateRoute} from 'components/PrivateRoute'
 
 const Home = lazy(() => import('pages/Home/Home'))
 const FindCat = lazy(() => import('pages/FindCat/FindCat'))
@@ -31,10 +33,14 @@ const { isRefreshing } = useAuth()
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
-          <Route path="/findcat" element={<FindCat />} />
-          <Route path="/favorite" element={<Favorite />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/findcat" element={
+             <PrivateRoute component={<FindCat />}  redirectTo='/login' /> } />
+          <Route path="/favorite" element={
+             <PrivateRoute component={<Favorite />}  redirectTo='/login' /> } />
+          <Route path="/login" element={
+             <RestrictedRoute component={<LoginPage/>}  redirectTo="/findcat" /> } />
+          <Route path="/register" element={
+            <RestrictedRoute component={<RegisterPage/>} redirectTo='/findcat' /> } />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
