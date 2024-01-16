@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 // import { Home, FindCat, NotFound, Favorite, LoginPage, RegisterPage} from 'pages';
 import { refreshCurrentUser } from 'redux/auth/authOperations';
+import { useAuth } from 'hooks/useAuth'
 
 const Home = lazy(() => import('pages/Home/Home'))
 const FindCat = lazy(() => import('pages/FindCat/FindCat'))
@@ -17,12 +18,16 @@ const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'))
 
 export const App = () => {
   const dispatch = useDispatch()
+const { isRefreshing } = useAuth()
+
   React.useEffect(() => {
     dispatch(refreshCurrentUser())
   }, [dispatch])
   
   return (
-    <>
+    isRefreshing ? (
+      <b>Refreshing user...</b> 
+      ) : (
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
@@ -33,6 +38,7 @@ export const App = () => {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-    </>
+    )
+    
   );
 };
