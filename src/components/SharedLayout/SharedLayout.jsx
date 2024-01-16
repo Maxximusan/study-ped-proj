@@ -1,4 +1,4 @@
-// import { useState } from 'react';
+import { Suspense } from 'react';
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { Navigation } from 'components/Navigation/Navigation';
@@ -21,7 +21,9 @@ export const SharedLayout = () => {
         {isLoggedIn ? <UserMenu /> : <AuthNav />}
       </Header>
       <main>
-        <Outlet />
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
       </main>
     </Box>
   );

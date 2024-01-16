@@ -1,12 +1,19 @@
-import React from 'react';
+import React, {lazy} from 'react';
 // import { RotatingLines } from 'react-loader-spinner';
 
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
-import { Home, FindCat, NotFound, Favorite, LoginPage, RegisterPage} from 'pages';
+// import { Home, FindCat, NotFound, Favorite, LoginPage, RegisterPage} from 'pages';
 import { refreshCurrentUser } from 'redux/auth/authOperations';
+
+const Home = lazy(() => import('pages/Home/Home'))
+const FindCat = lazy(() => import('pages/FindCat/FindCat'))
+const Favorite = lazy(() => import('pages/Favorite/Favorite'))
+const NotFound = lazy(() => import('pages/NotFound/NotFound'))
+const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'))
+const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'))
 
 export const App = () => {
   const dispatch = useDispatch()
