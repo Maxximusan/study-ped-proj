@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, login, logOut, refreshCurrentUser } from 'redux/auth/authOperations'
+import { registerR, login, logOut, refreshCurrentUser } from 'redux/auth/authOperations'
 
 
 const initialState = {
@@ -13,7 +13,7 @@ const initialState = {
     name: 'auth',
     initialState,
     extraReducers: {
-      [register.fulfilled](state, action){
+      [registerR.fulfilled](state, action){
         state.user = action.payload.user;
         state.token = action.payload.token
         state.isLoggedIn = true

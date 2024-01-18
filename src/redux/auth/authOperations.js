@@ -19,7 +19,7 @@ const clearToken = () => {
 }
 
 
-export const register = createAsyncThunk(
+export const registerR = createAsyncThunk(
     'auth/register',
     async (credentials, thunkAPI) => {
       try {
