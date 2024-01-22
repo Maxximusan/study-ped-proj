@@ -1,7 +1,7 @@
 import React, {lazy} from 'react';
 // import { RotatingLines } from 'react-loader-spinner';
 
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
@@ -30,6 +30,7 @@ const { isRefreshing } = useAuth()
     isRefreshing ? (
       <b>Refreshing user...</b> 
       ) : (
+        
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
@@ -44,6 +45,7 @@ const { isRefreshing } = useAuth()
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+      
     )
     
   );
