@@ -11,7 +11,7 @@ import { theme } from './theme';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/study-ped-proj">
       <ThemeProvider theme={theme}>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>

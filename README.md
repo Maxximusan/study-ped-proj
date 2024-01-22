@@ -11,11 +11,9 @@ ___
 
 In this project you can find a lot of cats differetn breeds, read information about it, and create your favorite collection ...
 ___
-### -------------- picture from https://shields.io/ ?
-___
 ### -------------- demo ?
+![картинка - в следующих скобках - путь к изображению в проекте](././src/images/cats.jpg)
 ___
-
 ### Technologyes that i used in this project:
 ```
  * styled-components & styled-system
@@ -57,7 +55,7 @@ _Курсивный_
 
 [ссылка куда-либо](https:...)
 
-![картинка - в следующих скобках - путь к изображению в проекте](././src/images/cats.jpg)
+
 
 
 [![изображение как ссылка !!!!!! ](././src/images/cats2.jpg)](http://localhost:3000/)
@@ -80,3 +78,4 @@ _Курсивный_
 
 
 ![Static Badge](https://img.shields.io/badge/any_text-you_like-blue)
+
