@@ -4,3 +4,4 @@ export { default as NotFound } from './NotFound/NotFound';
 export { default as Favorite } from 'pages/Favorite/Favorite';
 export { default as LoginPage } from './LoginPage/LoginPage';
 export { default as RegisterPage } from './RegisterPage/RegisterPage';
+export { default as Testing } from './testing/testing';

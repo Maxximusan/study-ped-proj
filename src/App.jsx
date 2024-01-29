@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 // import { Home, FindCat, NotFound, Favorite, LoginPage, RegisterPage} from 'pages';
-import { NotFound } from 'pages';
+import { NotFound, Testing } from 'pages';
 import { refreshCurrentUser } from 'redux/auth/authOperations';
 import { useAuth } from 'hooks/useAuth'
 import { RestrictedRoute } from 'components/RestrictedRoute';
@@ -44,6 +44,7 @@ const { isRefreshing } = useAuth()
           <Route path="/register" element={
             <RestrictedRoute component={<RegisterPage/>} redirectTo='/findcat' /> } />
           <Route path="*" element={<NotFound />} />
+          <Route path="/testing" element={<Testing />} />
         </Route>
       </Routes>
       
