@@ -6,6 +6,17 @@ export const MainTitle = styled.h1`
   font-family: ${p => p.theme.fonts.droid};
   margin-bottom: ${p => p.theme.space[4]}px;
   text-align: center;
+  font-size: ${p => p.theme.fontSizes.l};
+  /* border: 1px solid rgba(0, 0, 0, 0.1); */
+  /* border-color: #ca0b0b; */
+  /* max-width: 900px;
+  @media screen and (min-width: 400px) and (max-width: 800px){
+    color: red
+  }
+
+  @media screen and (min-width: 801px) and (max-width: 1024px){
+    color: #51ff00
+  } */
 `;
 
 export const SecondTitle = styled.h2`
@@ -14,6 +25,16 @@ export const SecondTitle = styled.h2`
   margin-bottom: ${p => p.theme.space[4]}px;
   padding: ${p => p.theme.space[2]}px;
   text-align: center;
+
+  @media screen and (min-width: 400px) and (max-width: 800px){
+    color: #0011ff;
+    font-size: ${p => p.theme.fontSizes.s};
+  }
+
+  @media screen and (min-width: 801px) and (max-width: 1024px){
+    color: #ffee00;
+    font-size: ${p => p.theme.fontSizes.l};
+  }
 `;
 
 // export const ThirdTitle = styled.h3`

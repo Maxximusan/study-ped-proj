@@ -13,7 +13,7 @@ export const Navigation = () => {
       <SC.Link to="/favorite">FAVORITE</SC.Link>
       </>
       )}
-      <SC.Link to="/testing"> TESTING </SC.Link>
+      
     </nav>
   );
 };
