@@ -1,3 +1,7 @@
+/*от 10.10.24 - это заготовка чтобы пустить локал сторадж через редакс. 
+Зачем!? не знаю я это затеял год назад. Удалить да и всё + из стора выкинуть.
+*/
+
 import { createSlice } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
