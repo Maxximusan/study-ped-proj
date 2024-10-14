@@ -1,5 +1,9 @@
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
+export const FindTitle = styled.h2`
+  color: ${p => p.theme.colors.primary};
+  text-align: center;
+`;
 // export const H3 = styled.h3`
 //   text-align: center;
 //   font-family: ${p => p.theme.fonts.prefer};

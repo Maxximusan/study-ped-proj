@@ -1,4 +1,4 @@
-
+//я не уверен что isLiked тут нужен вообще и что он нужен для пендинга и реджектеда при добавлении котов
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   allFavoriteCats: [],
-  isLiked: true,
+  isLiked: false,
   error: null,
   isLoading: false,
 };

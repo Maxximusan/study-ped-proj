@@ -11,7 +11,7 @@ import { BreedMainInfo } from 'components/BreedMainInfo/BreedMainInfo';
 import { BreedAdditionalInfo } from 'components/BreedAdditionalInfo/BreedAdditionalInfo';
 import { Loader } from 'components/Loader/Loader';
 import { setTimeOutForLoader } from 'helpers/setTimeout';
-// import * as SC from 'components/BreedCharacteristics/BreedCharacteristics.styled';
+import * as SC from 'components/BreedCharacteristics/BreedCharacteristics.styled';
 import {
   takeAdaptability,
   takeAffectionLevel,
@@ -112,10 +112,10 @@ export const BreedCharacteristics = () => {
 
   return (
     <Box as="section" height="100vw" bg="#b5a794">
-      <h2>
+      <SC.FindTitle>
         Choose breed, click on picture if you want like it and add to your
         favorite
-      </h2>
+      </SC.FindTitle>
       {breeds.length > 0 && (
         <Select
           options={options}

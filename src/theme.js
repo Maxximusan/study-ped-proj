@@ -12,6 +12,7 @@ export const theme = {
     my: 'orangered',
     my2: '#1eca1e',
     darkgreen: '#025c0d',
+    del: '#ff6060',
 
     //в этой точке (на цветовой палитре) вообще все цвета "мягкие"
     bgffc: '#b5a794',

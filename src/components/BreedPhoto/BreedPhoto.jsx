@@ -12,10 +12,10 @@ import { getCatsByBreed } from 'redux/cats/catsSelectors';
 export const BreedPhoto = () => {
   const dispatch = useDispatch();
   const cats = useSelector(getCatsByBreed);
+  const selectedBreed = useSelector(getId);
 
   const [needUrl, setNeedUrl] = useState(null);
   const [isModalShow, setIsModalShow] = useState(false);
-  const selectedBreed = useSelector(getId);
 
   useEffect(() => {
     if (selectedBreed === null) return;
@@ -60,7 +60,7 @@ export const BreedPhoto = () => {
           />
 
           {isModalShow && (
-            <Modal needUrlForModal={needUrl} onClickModal={toggleModal} />
+            <Modal imageUrl={needUrl} onClickModal={toggleModal} />
           )}
         </div>
       )}

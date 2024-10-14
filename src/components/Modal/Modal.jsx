@@ -1,21 +1,32 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
 
 import * as SC from 'components/Modal/Modal.styled';
-import { useLocalStorage } from '../../hooks/useLocalStorage';
+// import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { getLabel } from 'redux/breedOptionsSlice';
+
+import { getFavoriteCats } from 'redux/favoriteCats/favoriteCatsSelectors';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export const Modal = ({ needUrlForModal, onClickModal }) => {
-  const label = useSelector(getLabel);
-  const [isLiked, setIsLiked] = useLocalStorage(
-    label + ' ' + needUrlForModal,
-    false
-  );
+export const Modal = ({ imageUrl, onClickModal }) => {
+  const breed = useSelector(getLabel);
+  console.log(breed);
+
+  const usersFavoriteCats = useSelector(getFavoriteCats);
+
+  const checkCats = usersFavoriteCats.map(el => el.imageUrl).includes(imageUrl);
+  console.log(checkCats);
+
+  const [localIsLiked, setLocalIsLiked] = useState(checkCats);
+
+  // const [isLiked, setIsLiked] = useLocalStorage(
+  //   label + ' ' + needUrlForModal,
+  //   false
+  // );
 
   const handleBackdropClick = event => {
     if (event.currentTarget === event.target) {
@@ -38,7 +49,7 @@ export const Modal = ({ needUrlForModal, onClickModal }) => {
   }, [onClickModal]);
 
   const handleLike = event => {
-    setIsLiked(prev => !prev);
+    setLocalIsLiked(prev => !prev);
     event.preventDefault();
   };
 
@@ -49,7 +60,7 @@ export const Modal = ({ needUrlForModal, onClickModal }) => {
           <SC.LikeDes>
             If you want to add this cat to your favorite - push "Like" here
           </SC.LikeDes>
-          {!isLiked ? (
+          {!localIsLiked ? (
             <SC.LikeBtn type="button" onClick={handleLike}>
               <AiOutlineHeart size="2em" color="orangered" />
             </SC.LikeBtn>
@@ -59,12 +70,7 @@ export const Modal = ({ needUrlForModal, onClickModal }) => {
             </SC.LikeBtn>
           )}
         </SC.LikeBox>
-        <img
-          src={needUrlForModal}
-          alt="chosen cat"
-          width="600px"
-          height="300px"
-        />
+        <img src={imageUrl} alt="chosen cat" width="600px" height="300px" />
       </SC.Modal>
     </SC.Overlay>,
     modalRoot
@@ -72,7 +78,7 @@ export const Modal = ({ needUrlForModal, onClickModal }) => {
 };
 
 Modal.propTypes = {
-  needUrlForModal: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
   onClickModal: PropTypes.func.isRequired,
   // label: PropTypes.string.isRequired,
 };

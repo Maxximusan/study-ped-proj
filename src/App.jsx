@@ -22,7 +22,7 @@ const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
-  console.log(isRefreshing);
+  // console.log(isRefreshing);
 
   React.useEffect(() => {
     dispatch(refreshCurrentUser());
@@ -47,7 +47,7 @@ export const App = () => {
         <Route
           path="/login"
           element={
-            <RestrictedRoute component={<LoginPage />} redirectTo="/findcat" />
+            <RestrictedRoute component={<LoginPage />} redirectTo="/favorite" />
           }
         />
         <Route
@@ -55,7 +55,7 @@ export const App = () => {
           element={
             <RestrictedRoute
               component={<RegisterPage />}
-              redirectTo="/findcat"
+              redirectTo="/favorite"
             />
           }
         />
