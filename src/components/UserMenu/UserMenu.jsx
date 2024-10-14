@@ -8,10 +8,15 @@ export const UserMenu = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
 
+  const logoutHandler = () => {
+    localStorage.clear();
+    dispatch(logOut());
+  };
+
   return (
     <SC.Container>
       <SC.UserName>Welcome, Dear {user}</SC.UserName>
-      <button type="button" onClick={() => dispatch(logOut())}>
+      <button type="button" onClick={logoutHandler}>
         Logout
       </button>
     </SC.Container>

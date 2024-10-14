@@ -22,7 +22,6 @@ const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
-  // console.log(isRefreshing);
 
   React.useEffect(() => {
     dispatch(refreshCurrentUser());

@@ -23,9 +23,6 @@ export const BreedPhoto = () => {
     dispatch(catsOperations.fetchCatsByBreed(selectedBreed));
   }, [selectedBreed, dispatch]);
 
-  // console.log(selectedBreed);
-  // console.log(cats);
-
   const catsImages = cats.map(cat => ({
     id: cat.id,
     original: cat.url,
@@ -34,15 +31,12 @@ export const BreedPhoto = () => {
     // originalWidth: cat.width,
     // originalHeight: cat.height,
   }));
-  // console.log(catsImages);
 
   const toggleModal = () => {
     setIsModalShow(prevState => !prevState);
   };
   const onClick = option => {
     setNeedUrl(option.target.src);
-    // console.log(needUrl);
-    // console.log(option);
 
     toggleModal();
   };

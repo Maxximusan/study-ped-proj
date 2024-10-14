@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Item = styled.li`
-  margin-bottom: ${p => p.theme.space[5]}px;
+  margin-bottom: ${p => p.theme.space[6]}px;
 `;
 
 export const P = styled.p`
@@ -19,4 +19,5 @@ export const DeleteBtn = styled.button`
   border-radius: ${p => p.theme.radii.normal};
   border: ${p => p.theme.borders.normal};
   background-color: ${p => p.theme.colors.del};
+  font-size: ${p => p.theme.fontSizes.s};
 `;

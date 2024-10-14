@@ -2,31 +2,28 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import * as SC from 'components/Modal/Modal.styled';
-// import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { getLabel } from 'redux/breedOptionsSlice';
 
 import { getFavoriteCats } from 'redux/favoriteCats/favoriteCatsSelectors';
 
+import { addLikeCat } from 'redux/favoriteCats/favoriteCatsOperations';
+
 const modalRoot = document.querySelector('#modal-root');
 
 export const Modal = ({ imageUrl, onClickModal }) => {
+  const dispatch = useDispatch();
   const breed = useSelector(getLabel);
-  console.log(breed);
-
   const usersFavoriteCats = useSelector(getFavoriteCats);
 
   const checkCats = usersFavoriteCats.map(el => el.imageUrl).includes(imageUrl);
-  console.log(checkCats);
 
   const [localIsLiked, setLocalIsLiked] = useState(checkCats);
 
-  // const [isLiked, setIsLiked] = useLocalStorage(
-  //   label + ' ' + needUrlForModal,
-  //   false
-  // );
+  const [isLiked, setIsLiked] = useLocalStorage(imageUrl, false);
 
   const handleBackdropClick = event => {
     if (event.currentTarget === event.target) {
@@ -49,8 +46,10 @@ export const Modal = ({ imageUrl, onClickModal }) => {
   }, [onClickModal]);
 
   const handleLike = event => {
-    setLocalIsLiked(prev => !prev);
     event.preventDefault();
+    setLocalIsLiked(prev => !prev);
+    dispatch(addLikeCat({ imageUrl, breed }));
+    setIsLiked(prev => !prev);
   };
 
   return createPortal(
@@ -60,7 +59,7 @@ export const Modal = ({ imageUrl, onClickModal }) => {
           <SC.LikeDes>
             If you want to add this cat to your favorite - push "Like" here
           </SC.LikeDes>
-          {!localIsLiked ? (
+          {!localIsLiked && !isLiked ? (
             <SC.LikeBtn type="button" onClick={handleLike}>
               <AiOutlineHeart size="2em" color="orangered" />
             </SC.LikeBtn>
