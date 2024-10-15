@@ -34,10 +34,11 @@ import {
   takeTemperament,
   takeWikipedia,
 } from '../../redux/breedOptionsSlice';
-import { getBreeds } from 'redux/cats/catsSelectors';
+import { getBreeds} from 'redux/cats/catsSelectors';
 
 export const BreedCharacteristics = () => {
   const breeds = useSelector(getBreeds);
+     
 
   const [choseBreed, setChosebreed] = useState(false);
   const [isLoadingBreedPhoto, setIsLoadingBreedPhoto] = useState(false);

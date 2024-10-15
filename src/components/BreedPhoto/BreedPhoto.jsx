@@ -13,6 +13,8 @@ export const BreedPhoto = () => {
   const dispatch = useDispatch();
   const cats = useSelector(getCatsByBreed);
   const selectedBreed = useSelector(getId);
+ 
+  
 
   const [needUrl, setNeedUrl] = useState(null);
   const [isModalShow, setIsModalShow] = useState(false);
