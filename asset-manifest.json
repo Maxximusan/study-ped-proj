@@ -1,34 +1,14 @@
 {
   "files": {
     "main.css": "/study-ped-proj/static/css/main.dd0a07c8.css",
-    "main.js": "/study-ped-proj/static/js/main.e4a4eea0.js",
-    "static/js/504.fffbd374.chunk.js": "/study-ped-proj/static/js/504.fffbd374.chunk.js",
-    "static/js/901.2752e259.chunk.js": "/study-ped-proj/static/js/901.2752e259.chunk.js",
-    "static/js/940.b70c86a2.chunk.js": "/study-ped-proj/static/js/940.b70c86a2.chunk.js",
-    "static/js/256.dc070c3e.chunk.js": "/study-ped-proj/static/js/256.dc070c3e.chunk.js",
-    "static/js/589.552a0134.chunk.js": "/study-ped-proj/static/js/589.552a0134.chunk.js",
-    "static/js/913.7de70138.chunk.js": "/study-ped-proj/static/js/913.7de70138.chunk.js",
-    "static/js/45.fa8df890.chunk.js": "/study-ped-proj/static/js/45.fa8df890.chunk.js",
-    "static/js/134.33eb12dc.chunk.js": "/study-ped-proj/static/js/134.33eb12dc.chunk.js",
-    "static/js/315.a5862b4a.chunk.js": "/study-ped-proj/static/js/315.a5862b4a.chunk.js",
-    "static/js/977.4bb614fe.chunk.js": "/study-ped-proj/static/js/977.4bb614fe.chunk.js",
+    "main.js": "/study-ped-proj/static/js/main.51adc0d5.js",
     "static/media/cats.jpg": "/study-ped-proj/static/media/cats.e7729f4dd7fb860a8849.jpg",
     "index.html": "/study-ped-proj/index.html",
     "main.dd0a07c8.css.map": "/study-ped-proj/static/css/main.dd0a07c8.css.map",
-    "main.e4a4eea0.js.map": "/study-ped-proj/static/js/main.e4a4eea0.js.map",
-    "504.fffbd374.chunk.js.map": "/study-ped-proj/static/js/504.fffbd374.chunk.js.map",
-    "901.2752e259.chunk.js.map": "/study-ped-proj/static/js/901.2752e259.chunk.js.map",
-    "940.b70c86a2.chunk.js.map": "/study-ped-proj/static/js/940.b70c86a2.chunk.js.map",
-    "256.dc070c3e.chunk.js.map": "/study-ped-proj/static/js/256.dc070c3e.chunk.js.map",
-    "589.552a0134.chunk.js.map": "/study-ped-proj/static/js/589.552a0134.chunk.js.map",
-    "913.7de70138.chunk.js.map": "/study-ped-proj/static/js/913.7de70138.chunk.js.map",
-    "45.fa8df890.chunk.js.map": "/study-ped-proj/static/js/45.fa8df890.chunk.js.map",
-    "134.33eb12dc.chunk.js.map": "/study-ped-proj/static/js/134.33eb12dc.chunk.js.map",
-    "315.a5862b4a.chunk.js.map": "/study-ped-proj/static/js/315.a5862b4a.chunk.js.map",
-    "977.4bb614fe.chunk.js.map": "/study-ped-proj/static/js/977.4bb614fe.chunk.js.map"
+    "main.51adc0d5.js.map": "/study-ped-proj/static/js/main.51adc0d5.js.map"
   },
   "entrypoints": [
     "static/css/main.dd0a07c8.css",
-    "static/js/main.e4a4eea0.js"
+    "static/js/main.51adc0d5.js"
   ]
 }
